@@ -1,0 +1,138 @@
+004-005 @WRITE_PROGRAM_MEMORY8.P1
+004-005 @READ_PROGRAM_MEMORY8.P2
+015     CCP_1
+015     CCP_1_LOW
+016     CCP_1_HIGH
+01B     CCP_2
+01B     CCP_2_LOW
+01C     CCP_2_HIGH
+020     @TRIS_C
+021     second
+022     minute
+023     hour
+024     date
+025     month
+026     year
+027     day
+028-037 ValHienThi
+038-069 vmsg_pattern
+06A     pos
+06B-06C HienThiVal_With_Delay_number.delay_time
+06D     HienThiVal_With_Delay_number.NUMBER
+06E     HienThiVal_With_Delay_number.i
+06F     @delay_ms1.P1
+06F     @I2C_READ_1.P2
+06F     ds1307_write.address
+06F-070 HienThiVal_With_Delay.Val
+06F     HienThiVal_With_Delay_number.@SCRATCH1
+06F     get_data.@SCRATCH1
+06F     Convert_BCD_to_Decimal.@SCRATCH1
+06F     Convert_Decimal_to_BCD.@SCRATCH1
+06F     Adjust_Time_Calendar.@SCRATCH1
+070     ds1307_write.data
+070     @DIV88.P1
+070     @I2C_READ_1.@SCRATCH1
+070     HienThiVal_With_Delay_number.@SCRATCH2
+070     Convert_BCD_to_Decimal.@SCRATCH2
+071     @I2C_WRITE_1.P1
+071-072 HienThiVal_With_Delay.delay_time
+071     @DIV88.P1
+071     @MUL88.P2
+071     @I2C_READ_1.@SCRATCH2
+071     HienThiVal_With_Delay_number.@SCRATCH3
+072     @MUL88.P1
+072     @DIV88.@SCRATCH1
+073     HienThiVal_With_Delay.@SCRATCH1
+074     HienThiVal_With_Delay.@SCRATCH2
+075-076 HienThiVal.Val
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B-07E HienThiVal.value
+0A0     HienThiVal.i
+0A1-0A4 xuat_4byte.xuat4byte
+0A1     HienThiVal.@SCRATCH1
+0A2     @delay_us1.P1
+0A2     HienThiVal.@SCRATCH2
+0A3     HienThiVal.@SCRATCH3
+0A4     HienThiVal.@SCRATCH4
+0A5     xuat_4byte.byte3
+0A5     HienThiVal.@SCRATCH5
+0A6     xuat_4byte.byte2
+0A6     HienThiVal.@SCRATCH6
+0A7     xuat_4byte.byte1
+0A7     HienThiVal.@SCRATCH7
+0A8     xuat_4byte.byte0
+0A8     HienThiVal.@SCRATCH8
+0A9     xuat_1byte.bytexuat
+0A9     xuat_4byte.@SCRATCH1
+0A9     HienThiVal.@SCRATCH9
+0AA     xuat_1byte.i
+0AA     xuat_4byte.@SCRATCH2
+0AA     HienThiVal.@SCRATCH10
+0AB     xuat_4byte.@SCRATCH3
+0AC     xuat_4byte.@SCRATCH4
+0AD     xuat_4byte.@SCRATCH5
+107.6   C1OUT
+108.6   C2OUT
+10D-10E @READ_PROGRAM_MEMORY8.P1
+10D-10E @WRITE_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  MaLed7Doan.call
+000008  MaLed7Doan.data
+000012  DichCot.call
+000016  DichCot.data
+000026  @I2C_WRITE_1
+000070  @I2C_READ_1
+0000B5  xuat_1byte
+0000DA  HienThiVal_With_Delay
+0000F5  HienThiVal
+000164  xuat_4byte
+00019F  @delay_us1
+0001B6  @MUL88
+0001DB  Convert_BCD_to_Decimal
+000230  @DIV88
+000245  Convert_Decimal_to_BCD
+0002AC  @delay_ms1
+0002C0  ds1307_write
+0002F9  HienThiVal_With_Delay_number
+0002FC  get_data
+0003FB  Adjust_Time_Calendar
+000596  MAIN
+000596  @cinit1
+0005B0  @cinit2
+
+Project Directory:
+    G:\My Drive\Duan\24clock\code\
+
+Project Files:
+    clock.c                                                 [03-Nov-25 12:20  CRC=2A6ABA38]
+    C:\Program Files (x86)\PICC\Devices\16f887.h            [12-Nov-13 14:35  CRC=6CB1A611]
+
+Source signature=03CE065A
+
+Units:
+    clock (main)
+
+Compiler Settings:
+    Processor:      PIC16F887
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   clock.xsym
+    Errors:      clock.err
+    Ext Symbols: clock.esym
+    INHX8:       clock.hex
+    Symbols:     clock.sym
+    List:        clock.lst
+    Debug/COFF:  clock.cof
+    Project:     clock.ccspjt
+    Call Tree:   clock.tre
+    Statistics:  clock.STA

@@ -1,0 +1,2708 @@
+CCS PCM C Compiler, Version 5.015, 5967               04-Feb-26 05:28
+
+               Filename:   G:\My Drive\Duan\24clock\code\clock.lst
+
+               ROM used:   2104 words (26%)
+                           Largest free fragment is 2048
+               RAM used:   82 (22%) at main() level
+                           114 (31%) worst case
+               Stack used: 3 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  08
+0001:  MOVWF  0A
+0002:  GOTO   000
+0003:  NOP
+.................... #include <16f887.h> 
+.................... //////////// Standard Header file for the PIC16F887 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F887 
+0004:  BCF    0A.0
+0005:  BCF    0A.1
+0006:  BCF    0A.2
+0007:  ADDWF  02,F
+0008:  RETLW  C0
+0009:  RETLW  F9
+000A:  RETLW  A4
+000B:  RETLW  B0
+000C:  RETLW  99
+000D:  RETLW  92
+000E:  RETLW  82
+000F:  RETLW  F8
+0010:  RETLW  80
+0011:  RETLW  90
+0012:  BCF    0A.0
+0013:  BCF    0A.1
+0014:  BCF    0A.2
+0015:  ADDWF  02,F
+0016:  RETLW  01
+0017:  RETLW  02
+0018:  RETLW  04
+0019:  RETLW  08
+001A:  RETLW  10
+001B:  RETLW  20
+001C:  RETLW  40
+001D:  RETLW  80
+001E:  RETLW  01
+001F:  RETLW  02
+0020:  RETLW  04
+0021:  RETLW  08
+0022:  RETLW  10
+0023:  RETLW  20
+0024:  RETLW  40
+0025:  RETLW  80
+*
+030B:  CLRF   77
+030C:  CLRF   78
+030D:  MOVF   74,W
+030E:  BCF    03.0
+030F:  BTFSC  75.0
+0310:  ADDWF  77,F
+0311:  RRF    77,F
+0312:  RRF    78,F
+0313:  BTFSC  75.1
+0314:  ADDWF  77,F
+0315:  RRF    77,F
+0316:  RRF    78,F
+0317:  BTFSC  75.2
+0318:  ADDWF  77,F
+0319:  RRF    77,F
+031A:  RRF    78,F
+031B:  BTFSC  75.3
+031C:  ADDWF  77,F
+031D:  RRF    77,F
+031E:  RRF    78,F
+031F:  BTFSC  75.4
+0320:  ADDWF  77,F
+0321:  RRF    77,F
+0322:  RRF    78,F
+0323:  BTFSC  75.5
+0324:  ADDWF  77,F
+0325:  RRF    77,F
+0326:  RRF    78,F
+0327:  BTFSC  75.6
+0328:  ADDWF  77,F
+0329:  RRF    77,F
+032A:  RRF    78,F
+032B:  BTFSC  75.7
+032C:  ADDWF  77,F
+032D:  RRF    77,F
+032E:  RRF    78,F
+032F:  RETURN
+*
+0385:  MOVF   74,W
+0386:  CLRF   78
+0387:  SUBWF  73,W
+0388:  BTFSC  03.0
+0389:  GOTO   38D
+038A:  MOVF   73,W
+038B:  MOVWF  77
+038C:  GOTO   399
+038D:  CLRF   77
+038E:  MOVLW  08
+038F:  MOVWF  75
+0390:  RLF    73,F
+0391:  RLF    77,F
+0392:  MOVF   74,W
+0393:  SUBWF  77,W
+0394:  BTFSC  03.0
+0395:  MOVWF  77
+0396:  RLF    78,F
+0397:  DECFSZ 75,F
+0398:  GOTO   390
+0399:  RETURN
+....................  
+.................... #list 
+....................  
+.................... #fuses INTRC_IO 
+.................... #use delay(clock=8000000)   // 8 MHz internal oscillator 
+*
+00D7:  MOVLW  73
+00D8:  MOVWF  04
+00D9:  BCF    03.7
+00DA:  MOVF   00,W
+00DB:  BTFSC  03.2
+00DC:  GOTO   0EA
+00DD:  MOVLW  02
+00DE:  MOVWF  78
+00DF:  CLRF   77
+00E0:  DECFSZ 77,F
+00E1:  GOTO   0E0
+00E2:  DECFSZ 78,F
+00E3:  GOTO   0DF
+00E4:  MOVLW  97
+00E5:  MOVWF  77
+00E6:  DECFSZ 77,F
+00E7:  GOTO   0E6
+00E8:  DECFSZ 00,F
+00E9:  GOTO   0DD
+00EA:  RETURN
+*
+02F4:  MOVLW  08
+02F5:  SUBWF  26,F
+02F6:  BTFSS  03.0
+02F7:  GOTO   304
+02F8:  MOVLW  A6
+02F9:  MOVWF  04
+02FA:  BCF    03.7
+02FB:  BCF    03.0
+02FC:  RRF    00,F
+02FD:  MOVF   00,W
+02FE:  BTFSC  03.2
+02FF:  GOTO   304
+0300:  GOTO   302
+0301:  NOP
+0302:  DECFSZ 00,F
+0303:  GOTO   301
+.................... #use i2c(master, sda=PIN_C4, scl=PIN_C3, slow) 
+*
+0026:  MOVLW  08
+0027:  MOVWF  78
+0028:  NOP
+0029:  BCF    07.3
+002A:  BCF    20.3
+002B:  MOVF   20,W
+002C:  BSF    03.5
+002D:  MOVWF  07
+002E:  NOP
+002F:  RLF    72,F
+0030:  BCF    03.5
+0031:  BCF    07.4
+0032:  BTFSS  03.0
+0033:  GOTO   03A
+0034:  BSF    20.4
+0035:  MOVF   20,W
+0036:  BSF    03.5
+0037:  MOVWF  07
+0038:  GOTO   03E
+0039:  BCF    03.5
+003A:  BCF    20.4
+003B:  MOVF   20,W
+003C:  BSF    03.5
+003D:  MOVWF  07
+003E:  NOP
+003F:  BCF    03.5
+0040:  BSF    20.3
+0041:  MOVF   20,W
+0042:  BSF    03.5
+0043:  MOVWF  07
+0044:  BCF    03.5
+0045:  BTFSS  07.3
+0046:  GOTO   045
+0047:  DECFSZ 78,F
+0048:  GOTO   028
+0049:  NOP
+004A:  BCF    07.3
+004B:  BCF    20.3
+004C:  MOVF   20,W
+004D:  BSF    03.5
+004E:  MOVWF  07
+004F:  NOP
+0050:  BCF    03.5
+0051:  BSF    20.4
+0052:  MOVF   20,W
+0053:  BSF    03.5
+0054:  MOVWF  07
+0055:  NOP
+0056:  NOP
+0057:  BCF    03.5
+0058:  BSF    20.3
+0059:  MOVF   20,W
+005A:  BSF    03.5
+005B:  MOVWF  07
+005C:  BCF    03.5
+005D:  BTFSS  07.3
+005E:  GOTO   05D
+005F:  CLRF   78
+0060:  NOP
+0061:  BTFSC  07.4
+0062:  BSF    78.0
+0063:  BCF    07.3
+0064:  BCF    20.3
+0065:  MOVF   20,W
+0066:  BSF    03.5
+0067:  MOVWF  07
+0068:  BCF    03.5
+0069:  BCF    07.4
+006A:  BCF    20.4
+006B:  MOVF   20,W
+006C:  BSF    03.5
+006D:  MOVWF  07
+006E:  BCF    03.5
+006F:  RETURN
+*
+00EB:  MOVLW  08
+00EC:  MOVWF  73
+00ED:  MOVF   77,W
+00EE:  MOVWF  74
+00EF:  BSF    20.4
+00F0:  MOVF   20,W
+00F1:  BSF    03.5
+00F2:  MOVWF  07
+00F3:  NOP
+00F4:  BCF    03.5
+00F5:  BSF    20.3
+00F6:  MOVF   20,W
+00F7:  BSF    03.5
+00F8:  MOVWF  07
+00F9:  BCF    03.5
+00FA:  BTFSS  07.3
+00FB:  GOTO   0FA
+00FC:  BTFSC  07.4
+00FD:  BSF    03.0
+00FE:  BTFSS  07.4
+00FF:  BCF    03.0
+0100:  RLF    78,F
+0101:  NOP
+0102:  BCF    20.3
+0103:  MOVF   20,W
+0104:  BSF    03.5
+0105:  MOVWF  07
+0106:  BCF    03.5
+0107:  BCF    07.3
+0108:  DECFSZ 73,F
+0109:  GOTO   0EF
+010A:  BSF    20.4
+010B:  MOVF   20,W
+010C:  BSF    03.5
+010D:  MOVWF  07
+010E:  NOP
+010F:  BCF    03.5
+0110:  BCF    07.4
+0111:  MOVF   74,W
+0112:  BTFSC  03.2
+0113:  GOTO   119
+0114:  BCF    20.4
+0115:  MOVF   20,W
+0116:  BSF    03.5
+0117:  MOVWF  07
+0118:  BCF    03.5
+0119:  NOP
+011A:  BSF    20.3
+011B:  MOVF   20,W
+011C:  BSF    03.5
+011D:  MOVWF  07
+011E:  BCF    03.5
+011F:  BTFSS  07.3
+0120:  GOTO   11F
+0121:  NOP
+0122:  BCF    07.3
+0123:  BCF    20.3
+0124:  MOVF   20,W
+0125:  BSF    03.5
+0126:  MOVWF  07
+0127:  NOP
+0128:  BCF    03.5
+0129:  BCF    07.4
+012A:  BCF    20.4
+012B:  MOVF   20,W
+012C:  BSF    03.5
+012D:  MOVWF  07
+012E:  BCF    03.5
+012F:  RETURN
+....................  
+.................... #define SER PIN_D0 
+.................... #define SCK PIN_D2 
+.................... #define RCK PIN_D4 
+.................... #define MOD PIN_B0 
+.................... #define INC PIN_B7 
+.................... #define LED0 PIN_A0 
+.................... #define LED1 PIN_A1 
+.................... #define LED2 PIN_A2 
+.................... #define LED3 PIN_A3 
+.................... #define LED4 PIN_A4 
+.................... #define LED5 PIN_A5 
+.................... #define LED6 PIN_A6 
+.................... #define LED7 PIN_A7 
+.................... #define S_COI PIN_D6 
+....................  
+.................... unsigned int8 second, minute, hour, date, month, year, day; 
+.................... // Ma led 7 doan common anode tu 0 den 9 
+.................... const unsigned int8 MaLed7Doan[10] = {0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8, 0x80, 0x90}; 
+....................  
+.................... int1 flag_coi = 0; 
+....................  
+.................... const unsigned int16 TIME_DELAY = 30; 
+.................... const unsigned int8 NUMBER = 1; // ~0.3 seconds 
+.................... const unsigned int8 DichCot[16] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80}; 
+.................... unsigned int8 ValHienThi[16] = {0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff}; 
+*
+081C:  MOVLW  FF
+081D:  BCF    03.6
+081E:  MOVWF  29
+081F:  MOVWF  2A
+0820:  MOVWF  2B
+0821:  MOVWF  2C
+0822:  MOVWF  2D
+0823:  MOVWF  2E
+0824:  MOVWF  2F
+0825:  MOVWF  30
+0826:  MOVWF  31
+0827:  MOVWF  32
+0828:  MOVWF  33
+0829:  MOVWF  34
+082A:  MOVWF  35
+082B:  MOVWF  36
+082C:  MOVWF  37
+082D:  MOVWF  38
+.................... unsigned int8 vmsg_pattern[] = {0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 
+....................                                 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 
+....................                                 0x87, 0x8b, 0xe3, 0xff, 0xc6, 0xc8, 0xff, 0xff, 
+....................                                 0x87, 0xaf, 0xa3, 0xab, 0xff, 0xa1, 0xfb, 0xab, 0x8b, 0xff, 
+....................                                 0x87, 0x8b, 0xe3, 0xa3, 0xab, 0x90, 
+....................                                 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff}; 
+082E:  MOVWF  39
+082F:  MOVWF  3A
+0830:  MOVWF  3B
+0831:  MOVWF  3C
+0832:  MOVWF  3D
+0833:  MOVWF  3E
+0834:  MOVWF  3F
+0835:  MOVWF  40
+0836:  MOVWF  41
+0837:  MOVWF  42
+0838:  MOVWF  43
+0839:  MOVWF  44
+083A:  MOVWF  45
+083B:  MOVWF  46
+083C:  MOVWF  47
+083D:  MOVWF  48
+083E:  MOVWF  49
+083F:  MOVWF  4A
+0840:  MOVLW  87
+0841:  MOVWF  4B
+0842:  MOVLW  8B
+0843:  MOVWF  4C
+0844:  MOVLW  E3
+0845:  MOVWF  4D
+0846:  MOVLW  FF
+0847:  MOVWF  4E
+0848:  MOVLW  C6
+0849:  MOVWF  4F
+084A:  MOVLW  C8
+084B:  MOVWF  50
+084C:  MOVLW  FF
+084D:  MOVWF  51
+084E:  MOVWF  52
+084F:  MOVLW  87
+0850:  MOVWF  53
+0851:  MOVLW  AF
+0852:  MOVWF  54
+0853:  MOVLW  A3
+0854:  MOVWF  55
+0855:  MOVLW  AB
+0856:  MOVWF  56
+0857:  MOVLW  FF
+0858:  MOVWF  57
+0859:  MOVLW  A1
+085A:  MOVWF  58
+085B:  MOVLW  FB
+085C:  MOVWF  59
+085D:  MOVLW  AB
+085E:  MOVWF  5A
+085F:  MOVLW  8B
+0860:  MOVWF  5B
+0861:  MOVLW  FF
+0862:  MOVWF  5C
+0863:  MOVLW  87
+0864:  MOVWF  5D
+0865:  MOVLW  8B
+0866:  MOVWF  5E
+0867:  MOVLW  E3
+0868:  MOVWF  5F
+0869:  MOVLW  A3
+086A:  MOVWF  60
+086B:  MOVLW  AB
+086C:  MOVWF  61
+086D:  MOVLW  90
+086E:  MOVWF  62
+086F:  MOVLW  FF
+0870:  MOVWF  63
+0871:  MOVWF  64
+0872:  MOVWF  65
+0873:  MOVWF  66
+0874:  MOVWF  67
+0875:  MOVWF  68
+0876:  MOVWF  69
+0877:  MOVWF  6A
+.................... unsigned int8 pos = 0; 
+.................... void xuat_1byte(unsigned int8 bytexuat); 
+.................... void xuat_4byte(unsigned int32 xuat4byte); 
+.................... void HienThiVal(unsigned int8 Val[16]); 
+.................... void HienThiVal_With_Delay(unsigned int8 Val[16], unsigned int16 delay_time); 
+.................... void HienThiVal_With_Delay_number(unsigned int16 delay_time, unsigned int8 number); 
+.................... void get_data(); 
+.................... void Convert_BCD_to_Decimal(); 
+.................... void Convert_Decimal_to_BCD(); 
+.................... void ds1307_write(unsigned int8 address, unsigned int8 data); 
+.................... void Adjust_Time_Calendar(); 
+.................... void bao_thoi_gian(); 
+.................... void function_Adj_flag_coi(); 
+.................... void setup_Time_Calendar(); 
+....................  
+.................... void xuat_1byte(unsigned int8 bytexuat) 
+.................... { 
+....................  
+....................     unsigned int8 i; 
+....................  
+....................     for (i = 0; i < 8; i++) 
+*
+0208:  BSF    03.5
+0209:  CLRF   2E
+020A:  MOVF   2E,W
+020B:  SUBLW  07
+020C:  BTFSS  03.0
+020D:  GOTO   22B
+....................     { 
+....................         output_bit(SER, (bytexuat & 0x80) ? 1 : 0); 
+020E:  BTFSS  2D.7
+020F:  GOTO   212
+0210:  MOVLW  01
+0211:  GOTO   213
+0212:  MOVLW  00
+0213:  XORLW  00
+0214:  BTFSS  03.2
+0215:  GOTO   21A
+0216:  BCF    03.5
+0217:  BCF    08.0
+0218:  GOTO   21C
+0219:  BSF    03.5
+021A:  BCF    03.5
+021B:  BSF    08.0
+021C:  BSF    03.5
+021D:  BCF    08.0
+....................         output_low(SCK); 
+021E:  BCF    08.2
+021F:  BCF    03.5
+0220:  BCF    08.2
+....................         delay_us(1); // delay nho de dam bao xung du dai tren phan cung, co the bo phan nay 
+0221:  GOTO   222
+....................         output_high(SCK); 
+0222:  BSF    03.5
+0223:  BCF    08.2
+0224:  BCF    03.5
+0225:  BSF    08.2
+....................         bytexuat = bytexuat << 1; 
+0226:  BCF    03.0
+0227:  BSF    03.5
+0228:  RLF    2D,F
+0229:  INCF   2E,F
+022A:  GOTO   20A
+....................     } 
+022B:  BCF    03.5
+022C:  RETURN
+.................... } 
+....................  
+.................... void xuat_4byte(unsigned int32 xuat4byte) 
+.................... { 
+....................     unsigned int8 byte3, byte2, byte1, byte0; 
+....................      
+....................     byte0 = (unsigned int8)(xuat4byte & 0x000000FF); 
+*
+02B9:  CLRF   78
+02BA:  CLRF   79
+02BB:  CLRF   7A
+02BC:  MOVF   25,W
+02BD:  MOVWF  2C
+....................     byte1 = (unsigned int8)((xuat4byte >> 8) & 0x000000FF); 
+02BE:  CLRF   31
+02BF:  CLRF   78
+02C0:  CLRF   79
+02C1:  CLRF   7A
+02C2:  MOVF   26,W
+02C3:  MOVWF  2B
+....................     byte2 = (unsigned int8)((xuat4byte >> 16) & 0x000000FF); 
+02C4:  CLRF   30
+02C5:  CLRF   31
+02C6:  CLRF   78
+02C7:  CLRF   79
+02C8:  CLRF   7A
+02C9:  MOVF   27,W
+02CA:  MOVWF  2A
+....................     byte3 = (unsigned int8)((xuat4byte >> 24) & 0x000000FF); 
+02CB:  CLRF   2F
+02CC:  CLRF   30
+02CD:  CLRF   31
+02CE:  CLRF   78
+02CF:  CLRF   79
+02D0:  CLRF   7A
+02D1:  MOVF   28,W
+02D2:  MOVWF  29
+....................  
+....................     xuat_1byte(byte3); 
+02D3:  MOVF   29,W
+02D4:  MOVWF  2D
+02D5:  BCF    03.5
+02D6:  CALL   208
+....................     xuat_1byte(byte2); 
+02D7:  BSF    03.5
+02D8:  MOVF   2A,W
+02D9:  MOVWF  2D
+02DA:  BCF    03.5
+02DB:  CALL   208
+....................     xuat_1byte(byte1); 
+02DC:  BSF    03.5
+02DD:  MOVF   2B,W
+02DE:  MOVWF  2D
+02DF:  BCF    03.5
+02E0:  CALL   208
+....................     xuat_1byte(byte0); 
+02E1:  BSF    03.5
+02E2:  MOVF   2C,W
+02E3:  MOVWF  2D
+02E4:  BCF    03.5
+02E5:  CALL   208
+....................     output_low(RCK); // Chốt dữ liệu 
+02E6:  BSF    03.5
+02E7:  BCF    08.4
+02E8:  BCF    03.5
+02E9:  BCF    08.4
+....................     delay_us(1); 
+02EA:  GOTO   2EB
+....................     output_high(RCK); // Chốt dữ liệu 
+02EB:  BSF    03.5
+02EC:  BCF    08.4
+02ED:  BCF    03.5
+02EE:  BSF    08.4
+.................... } 
+....................  
+.................... void HienThiVal(unsigned int8 Val[16]) 
+.................... { 
+....................     unsigned int32 value; 
+....................     for (int8 i = 0; i < 16; i++) 
+*
+0248:  CLRF   76
+0249:  MOVF   76,W
+024A:  SUBLW  0F
+024B:  BTFSS  03.0
+024C:  GOTO   309
+....................     { 
+....................         if (i < 8) 
+024D:  MOVF   76,W
+024E:  SUBLW  07
+024F:  BTFSS  03.0
+0250:  GOTO   286
+....................             value = (unsigned int32)Val[i] << 24 | (unsigned int32)DichCot[i] << 16 & (unsigned int32)0xffffff00; 
+0251:  MOVF   76,W
+0252:  ADDWF  7B,W
+0253:  MOVWF  04
+0254:  BCF    03.7
+0255:  BTFSC  7C.0
+0256:  BSF    03.7
+0257:  MOVF   00,W
+0258:  BSF    03.5
+0259:  CLRF   27
+025A:  CLRF   26
+025B:  CLRF   25
+025C:  MOVWF  24
+025D:  MOVWF  27
+025E:  CLRF   24
+025F:  CLRF   25
+0260:  CLRF   26
+0261:  MOVF   76,W
+0262:  BCF    03.5
+0263:  CALL   012
+0264:  MOVWF  78
+0265:  BSF    03.5
+0266:  CLRF   2C
+0267:  CLRF   2B
+0268:  CLRF   2A
+0269:  MOVF   78,W
+026A:  MOVWF  29
+026B:  MOVF   2A,W
+026C:  MOVWF  2C
+026D:  MOVF   29,W
+026E:  MOVWF  2B
+026F:  CLRF   29
+0270:  CLRF   2A
+0271:  CLRF   77
+0272:  MOVF   2A,W
+0273:  MOVWF  78
+0274:  MOVF   2B,W
+0275:  MOVWF  79
+0276:  MOVF   2C,W
+0277:  MOVWF  7A
+0278:  MOVF   77,W
+0279:  IORWF  24,W
+027A:  MOVWF  20
+027B:  MOVF   78,W
+027C:  IORWF  25,W
+027D:  MOVWF  21
+027E:  MOVF   79,W
+027F:  IORWF  26,W
+0280:  MOVWF  22
+0281:  MOVF   7A,W
+0282:  IORWF  27,W
+0283:  MOVWF  23
+0284:  GOTO   2B1
+0285:  BCF    03.5
+....................         else 
+....................             value = (unsigned int32)Val[i] << 8 | (unsigned int32)DichCot[i] & (unsigned int32)0xff00ffff; 
+0286:  MOVF   76,W
+0287:  ADDWF  7B,W
+0288:  MOVWF  04
+0289:  BCF    03.7
+028A:  BTFSC  7C.0
+028B:  BSF    03.7
+028C:  MOVF   00,W
+028D:  BSF    03.5
+028E:  CLRF   27
+028F:  CLRF   26
+0290:  CLRF   25
+0291:  MOVWF  24
+0292:  MOVF   26,W
+0293:  MOVWF  27
+0294:  MOVF   25,W
+0295:  MOVWF  26
+0296:  MOVF   24,W
+0297:  MOVWF  25
+0298:  CLRF   24
+0299:  MOVF   76,W
+029A:  BCF    03.5
+029B:  CALL   012
+029C:  MOVWF  78
+029D:  BSF    03.5
+029E:  CLRF   2C
+029F:  CLRF   2B
+02A0:  CLRF   2A
+02A1:  MOVF   78,W
+02A2:  MOVWF  29
+02A3:  MOVWF  77
+02A4:  CLRF   79
+02A5:  MOVF   77,W
+02A6:  IORWF  24,W
+02A7:  MOVWF  20
+02A8:  MOVF   2A,W
+02A9:  IORWF  25,W
+02AA:  MOVWF  21
+02AB:  MOVF   79,W
+02AC:  IORWF  26,W
+02AD:  MOVWF  22
+02AE:  MOVF   2C,W
+02AF:  IORWF  27,W
+02B0:  MOVWF  23
+....................         xuat_4byte(value); 
+02B1:  MOVF   23,W
+02B2:  MOVWF  28
+02B3:  MOVF   22,W
+02B4:  MOVWF  27
+02B5:  MOVF   21,W
+02B6:  MOVWF  26
+02B7:  MOVF   20,W
+02B8:  MOVWF  25
+....................         delay_us(500); 
+*
+02EF:  MOVLW  02
+02F0:  BSF    03.5
+02F1:  MOVWF  24
+02F2:  MOVLW  F8
+02F3:  MOVWF  26
+*
+0304:  DECFSZ 24,F
+0305:  GOTO   2F2
+0306:  INCF   76,F
+0307:  BCF    03.5
+0308:  GOTO   249
+....................     } 
+.................... } 
+....................  
+.................... void HienThiVal_With_Delay(unsigned int8 Val[16], unsigned int16 delay_time) 
+.................... ////////////////////////////////////////  USE  //////////////////////////////////////// 
+.................... //        unsigned int8  delay_time;                                                 // 
+.................... //        unsigned int16 cal_delay_time;                                             // 
+.................... //        delay_time = 0.5; // Seconds to display                                    // 
+.................... //        cal_delay_time = (unsigned int16)(delay_time * 1000 / 8); // 8 = 16 * 0.5  // 
+.................... //        HienThiVal_With_Delay(ValHienThi, cal_delay_time);                         // 
+.................... //        HienThiVal_With_Delay(ValHienThiOff, 2); // 1 ms                           // 
+.................... //////////////////////////////////////  END USE  ////////////////////////////////////// 
+.................... { 
+....................     while (delay_time-- > 0) 
+*
+022D:  MOVF   73,W
+022E:  MOVWF  7A
+022F:  MOVF   72,W
+0230:  BTFSC  03.2
+0231:  DECF   73,F
+0232:  DECF   72,F
+0233:  MOVWF  74
+0234:  MOVF   7A,W
+0235:  MOVWF  75
+0236:  MOVF   74,F
+0237:  BTFSS  03.2
+0238:  GOTO   23C
+0239:  MOVF   75,F
+023A:  BTFSC  03.2
+023B:  GOTO   30A
+....................     { 
+....................         HienThiVal(Val); 
+023C:  MOVF   70,W
+023D:  MOVWF  78
+023E:  MOVF   71,W
+023F:  MOVWF  7A
+0240:  MOVF   78,W
+0241:  MOVWF  74
+0242:  MOVF   7A,W
+0243:  MOVWF  75
+0244:  MOVF   75,W
+0245:  MOVWF  7C
+0246:  MOVF   74,W
+0247:  MOVWF  7B
+*
+0309:  GOTO   22D
+....................     } 
+030A:  RETURN
+.................... } 
+....................  
+.................... void HienThiVal_With_Delay_number(unsigned int16 delay_time, unsigned int8 number) 
+.................... { 
+....................     while (number > 0) 
+*
+0401:  MOVF   6E,F
+0402:  BTFSC  03.2
+0403:  GOTO   769
+....................     { 
+....................         unsigned int8 i; 
+....................         get_data(); 
+0404:  CALL   130
+....................         for (i = 0; i < 8; i++) 
+0405:  CLRF   6F
+0406:  MOVF   6F,W
+0407:  SUBLW  07
+0408:  BTFSS  03.0
+0409:  GOTO   425
+....................         { 
+....................             ValHienThi[i] = vmsg_pattern[pos + 7 - i]; 
+040A:  MOVLW  29
+040B:  ADDWF  6F,W
+040C:  MOVWF  78
+040D:  CLRF   7A
+040E:  BTFSC  03.0
+040F:  INCF   7A,F
+0410:  MOVF   78,W
+0411:  MOVWF  70
+0412:  MOVLW  07
+0413:  ADDWF  6B,W
+0414:  MOVWF  78
+0415:  MOVF   6F,W
+0416:  SUBWF  78,W
+0417:  ADDLW  39
+0418:  MOVWF  04
+0419:  BCF    03.7
+041A:  MOVF   00,W
+041B:  MOVWF  72
+041C:  MOVF   70,W
+041D:  MOVWF  04
+041E:  BCF    03.7
+041F:  BTFSC  7A.0
+0420:  BSF    03.7
+0421:  MOVF   72,W
+0422:  MOVWF  00
+0423:  INCF   6F,F
+0424:  GOTO   406
+....................         } 
+....................         HienThiVal_With_Delay(ValHienThi, delay_time); 
+0425:  CLRF   71
+0426:  MOVLW  29
+0427:  MOVWF  70
+0428:  MOVF   6D,W
+0429:  MOVWF  73
+042A:  MOVF   6C,W
+042B:  MOVWF  72
+042C:  CALL   22D
+....................         if (flag_coi) bao_thoi_gian(); 
+042D:  BTFSS  28.0
+042E:  GOTO   558
+....................         function_Adj_flag_coi(); 
+....................         Adjust_Time_Calendar(); 
+....................         number--; 
+*
+0767:  DECF   6E,F
+0768:  GOTO   401
+....................     }  
+0769:  BSF    0A.3
+076A:  BCF    0A.4
+076B:  GOTO   0C4 (RETURN)
+.................... } 
+....................  
+.................... void bao_thoi_gian() 
+.................... { 
+....................     get_data(); 
+*
+042F:  CALL   130
+....................     Convert_BCD_to_Decimal(); 
+0430:  CALL   330
+....................     if ((second == 0 || second == 1 || second == 3 || second == 4) && (minute == 0) && (hour == 12 || hour == 18)) 
+0431:  MOVF   21,F
+0432:  BTFSC  03.2
+0433:  GOTO   43F
+0434:  DECFSZ 21,W
+0435:  GOTO   437
+0436:  GOTO   43F
+0437:  MOVF   21,W
+0438:  SUBLW  03
+0439:  BTFSC  03.2
+043A:  GOTO   43F
+043B:  MOVF   21,W
+043C:  SUBLW  04
+043D:  BTFSS  03.2
+043E:  GOTO   4AE
+043F:  MOVF   22,F
+0440:  BTFSS  03.2
+0441:  GOTO   4AE
+0442:  MOVF   23,W
+0443:  SUBLW  0C
+0444:  BTFSC  03.2
+0445:  GOTO   44A
+0446:  MOVF   23,W
+0447:  SUBLW  12
+0448:  BTFSS  03.2
+0449:  GOTO   4AE
+....................     { 
+....................         for (int8 i = 0; i < 5; i++) 
+044A:  CLRF   70
+044B:  MOVF   70,W
+044C:  SUBLW  04
+044D:  BTFSS  03.0
+044E:  GOTO   4AE
+....................         { 
+....................             delay_ms(500); 
+044F:  MOVLW  02
+0450:  MOVWF  72
+0451:  MOVLW  FA
+0452:  MOVWF  73
+0453:  CALL   0D7
+0454:  DECFSZ 72,F
+0455:  GOTO   451
+....................             output_high(LED0); 
+0456:  BSF    03.5
+0457:  BCF    05.0
+0458:  BCF    03.5
+0459:  BSF    05.0
+....................             output_high(LED1); 
+045A:  BSF    03.5
+045B:  BCF    05.1
+045C:  BCF    03.5
+045D:  BSF    05.1
+....................             output_high(LED2); 
+045E:  BSF    03.5
+045F:  BCF    05.2
+0460:  BCF    03.5
+0461:  BSF    05.2
+....................             output_high(LED3); 
+0462:  BSF    03.5
+0463:  BCF    05.3
+0464:  BCF    03.5
+0465:  BSF    05.3
+....................             output_high(LED4); 
+0466:  BSF    03.5
+0467:  BCF    05.4
+0468:  BCF    03.5
+0469:  BSF    05.4
+....................             output_high(LED5); 
+046A:  BSF    03.5
+046B:  BCF    05.5
+046C:  BCF    03.5
+046D:  BSF    05.5
+....................             output_high(LED6); 
+046E:  BSF    03.5
+046F:  BCF    05.6
+0470:  BCF    03.5
+0471:  BSF    05.6
+....................             output_high(LED7); 
+0472:  BSF    03.5
+0473:  BCF    05.7
+0474:  BCF    03.5
+0475:  BSF    05.7
+....................             output_high(S_COI); 
+0476:  BSF    03.5
+0477:  BCF    08.6
+0478:  BCF    03.5
+0479:  BSF    08.6
+....................             delay_ms(500); 
+047A:  MOVLW  02
+047B:  MOVWF  72
+047C:  MOVLW  FA
+047D:  MOVWF  73
+047E:  CALL   0D7
+047F:  DECFSZ 72,F
+0480:  GOTO   47C
+....................             output_low(LED0); 
+0481:  BSF    03.5
+0482:  BCF    05.0
+0483:  BCF    03.5
+0484:  BCF    05.0
+....................             output_low(LED1); 
+0485:  BSF    03.5
+0486:  BCF    05.1
+0487:  BCF    03.5
+0488:  BCF    05.1
+....................             output_low(LED2); 
+0489:  BSF    03.5
+048A:  BCF    05.2
+048B:  BCF    03.5
+048C:  BCF    05.2
+....................             output_low(LED3); 
+048D:  BSF    03.5
+048E:  BCF    05.3
+048F:  BCF    03.5
+0490:  BCF    05.3
+....................             output_low(LED4); 
+0491:  BSF    03.5
+0492:  BCF    05.4
+0493:  BCF    03.5
+0494:  BCF    05.4
+....................             output_low(LED5); 
+0495:  BSF    03.5
+0496:  BCF    05.5
+0497:  BCF    03.5
+0498:  BCF    05.5
+....................             output_low(LED6); 
+0499:  BSF    03.5
+049A:  BCF    05.6
+049B:  BCF    03.5
+049C:  BCF    05.6
+....................             output_low(LED7); 
+049D:  BSF    03.5
+049E:  BCF    05.7
+049F:  BCF    03.5
+04A0:  BCF    05.7
+....................             output_low(S_COI); 
+04A1:  BSF    03.5
+04A2:  BCF    08.6
+04A3:  BCF    03.5
+04A4:  BCF    08.6
+....................             delay_ms(500); 
+04A5:  MOVLW  02
+04A6:  MOVWF  72
+04A7:  MOVLW  FA
+04A8:  MOVWF  73
+04A9:  CALL   0D7
+04AA:  DECFSZ 72,F
+04AB:  GOTO   4A7
+04AC:  INCF   70,F
+04AD:  GOTO   44B
+....................         } 
+....................     } 
+....................     if ((second == 0 || second == 1 || second == 3 || second == 4) && (minute == 0) && (  (hour >= 6 && hour <= 11) || (hour >= 13 && hour <= 17)  )) 
+04AE:  MOVF   21,F
+04AF:  BTFSC  03.2
+04B0:  GOTO   4BC
+04B1:  DECFSZ 21,W
+04B2:  GOTO   4B4
+04B3:  GOTO   4BC
+04B4:  MOVF   21,W
+04B5:  SUBLW  03
+04B6:  BTFSC  03.2
+04B7:  GOTO   4BC
+04B8:  MOVF   21,W
+04B9:  SUBLW  04
+04BA:  BTFSS  03.2
+04BB:  GOTO   533
+04BC:  MOVF   22,F
+04BD:  BTFSS  03.2
+04BE:  GOTO   533
+04BF:  MOVF   23,W
+04C0:  SUBLW  05
+04C1:  BTFSC  03.0
+04C2:  GOTO   4C7
+04C3:  MOVF   23,W
+04C4:  SUBLW  0B
+04C5:  BTFSC  03.0
+04C6:  GOTO   4CF
+04C7:  MOVF   23,W
+04C8:  SUBLW  0C
+04C9:  BTFSC  03.0
+04CA:  GOTO   533
+04CB:  MOVF   23,W
+04CC:  SUBLW  11
+04CD:  BTFSS  03.0
+04CE:  GOTO   533
+....................     { 
+....................         for (int8 i = 0; i < 3; i++) 
+04CF:  CLRF   71
+04D0:  MOVF   71,W
+04D1:  SUBLW  02
+04D2:  BTFSS  03.0
+04D3:  GOTO   533
+....................         { 
+....................             delay_ms(500); 
+04D4:  MOVLW  02
+04D5:  MOVWF  72
+04D6:  MOVLW  FA
+04D7:  MOVWF  73
+04D8:  CALL   0D7
+04D9:  DECFSZ 72,F
+04DA:  GOTO   4D6
+....................             output_high(LED0); 
+04DB:  BSF    03.5
+04DC:  BCF    05.0
+04DD:  BCF    03.5
+04DE:  BSF    05.0
+....................             output_high(LED1); 
+04DF:  BSF    03.5
+04E0:  BCF    05.1
+04E1:  BCF    03.5
+04E2:  BSF    05.1
+....................             output_high(LED2); 
+04E3:  BSF    03.5
+04E4:  BCF    05.2
+04E5:  BCF    03.5
+04E6:  BSF    05.2
+....................             output_high(LED3); 
+04E7:  BSF    03.5
+04E8:  BCF    05.3
+04E9:  BCF    03.5
+04EA:  BSF    05.3
+....................             output_high(LED4); 
+04EB:  BSF    03.5
+04EC:  BCF    05.4
+04ED:  BCF    03.5
+04EE:  BSF    05.4
+....................             output_high(LED5); 
+04EF:  BSF    03.5
+04F0:  BCF    05.5
+04F1:  BCF    03.5
+04F2:  BSF    05.5
+....................             output_high(LED6); 
+04F3:  BSF    03.5
+04F4:  BCF    05.6
+04F5:  BCF    03.5
+04F6:  BSF    05.6
+....................             output_high(LED7); 
+04F7:  BSF    03.5
+04F8:  BCF    05.7
+04F9:  BCF    03.5
+04FA:  BSF    05.7
+....................             output_high(S_COI); 
+04FB:  BSF    03.5
+04FC:  BCF    08.6
+04FD:  BCF    03.5
+04FE:  BSF    08.6
+....................             delay_ms(500); 
+04FF:  MOVLW  02
+0500:  MOVWF  72
+0501:  MOVLW  FA
+0502:  MOVWF  73
+0503:  CALL   0D7
+0504:  DECFSZ 72,F
+0505:  GOTO   501
+....................             output_low(LED0); 
+0506:  BSF    03.5
+0507:  BCF    05.0
+0508:  BCF    03.5
+0509:  BCF    05.0
+....................             output_low(LED1); 
+050A:  BSF    03.5
+050B:  BCF    05.1
+050C:  BCF    03.5
+050D:  BCF    05.1
+....................             output_low(LED2); 
+050E:  BSF    03.5
+050F:  BCF    05.2
+0510:  BCF    03.5
+0511:  BCF    05.2
+....................             output_low(LED3); 
+0512:  BSF    03.5
+0513:  BCF    05.3
+0514:  BCF    03.5
+0515:  BCF    05.3
+....................             output_low(LED4); 
+0516:  BSF    03.5
+0517:  BCF    05.4
+0518:  BCF    03.5
+0519:  BCF    05.4
+....................             output_low(LED5); 
+051A:  BSF    03.5
+051B:  BCF    05.5
+051C:  BCF    03.5
+051D:  BCF    05.5
+....................             output_low(LED6); 
+051E:  BSF    03.5
+051F:  BCF    05.6
+0520:  BCF    03.5
+0521:  BCF    05.6
+....................             output_low(LED7); 
+0522:  BSF    03.5
+0523:  BCF    05.7
+0524:  BCF    03.5
+0525:  BCF    05.7
+....................             output_low(S_COI); 
+0526:  BSF    03.5
+0527:  BCF    08.6
+0528:  BCF    03.5
+0529:  BCF    08.6
+....................             delay_ms(500); 
+052A:  MOVLW  02
+052B:  MOVWF  72
+052C:  MOVLW  FA
+052D:  MOVWF  73
+052E:  CALL   0D7
+052F:  DECFSZ 72,F
+0530:  GOTO   52C
+0531:  INCF   71,F
+0532:  GOTO   4D0
+....................         } 
+....................     } 
+....................     Convert_Decimal_to_BCD(); 
+0533:  CALL   39A
+....................     output_low(S_COI); 
+0534:  BSF    03.5
+0535:  BCF    08.6
+0536:  BCF    03.5
+0537:  BCF    08.6
+....................     output_high(LED0); 
+0538:  BSF    03.5
+0539:  BCF    05.0
+053A:  BCF    03.5
+053B:  BSF    05.0
+....................     output_high(LED1); 
+053C:  BSF    03.5
+053D:  BCF    05.1
+053E:  BCF    03.5
+053F:  BSF    05.1
+....................     output_high(LED2); 
+0540:  BSF    03.5
+0541:  BCF    05.2
+0542:  BCF    03.5
+0543:  BSF    05.2
+....................     output_high(LED3); 
+0544:  BSF    03.5
+0545:  BCF    05.3
+0546:  BCF    03.5
+0547:  BSF    05.3
+....................     output_high(LED4); 
+0548:  BSF    03.5
+0549:  BCF    05.4
+054A:  BCF    03.5
+054B:  BSF    05.4
+....................     output_high(LED5); 
+054C:  BSF    03.5
+054D:  BCF    05.5
+054E:  BCF    03.5
+054F:  BSF    05.5
+....................     output_high(LED6); 
+0550:  BSF    03.5
+0551:  BCF    05.6
+0552:  BCF    03.5
+0553:  BSF    05.6
+....................     output_high(LED7); 
+0554:  BSF    03.5
+0555:  BCF    05.7
+0556:  BCF    03.5
+0557:  BSF    05.7
+.................... } 
+....................  
+.................... void get_data() 
+.................... { 
+....................     i2c_start(); 
+*
+0130:  BSF    20.4
+0131:  MOVF   20,W
+0132:  BSF    03.5
+0133:  MOVWF  07
+0134:  NOP
+0135:  BCF    03.5
+0136:  BSF    20.3
+0137:  MOVF   20,W
+0138:  BSF    03.5
+0139:  MOVWF  07
+013A:  NOP
+013B:  BCF    03.5
+013C:  BCF    07.4
+013D:  BCF    20.4
+013E:  MOVF   20,W
+013F:  BSF    03.5
+0140:  MOVWF  07
+0141:  NOP
+0142:  BCF    03.5
+0143:  BCF    07.3
+0144:  BCF    20.3
+0145:  MOVF   20,W
+0146:  BSF    03.5
+0147:  MOVWF  07
+....................     i2c_write(0xD0); 
+0148:  MOVLW  D0
+0149:  MOVWF  72
+014A:  BCF    03.5
+014B:  CALL   026
+....................     i2c_write(0x00); 
+014C:  CLRF   72
+014D:  CALL   026
+....................     i2c_start(); 
+014E:  BSF    20.4
+014F:  MOVF   20,W
+0150:  BSF    03.5
+0151:  MOVWF  07
+0152:  NOP
+0153:  BCF    03.5
+0154:  BSF    20.3
+0155:  MOVF   20,W
+0156:  BSF    03.5
+0157:  MOVWF  07
+0158:  NOP
+0159:  BCF    03.5
+015A:  BTFSS  07.3
+015B:  GOTO   15A
+015C:  BCF    07.4
+015D:  BCF    20.4
+015E:  MOVF   20,W
+015F:  BSF    03.5
+0160:  MOVWF  07
+0161:  NOP
+0162:  BCF    03.5
+0163:  BCF    07.3
+0164:  BCF    20.3
+0165:  MOVF   20,W
+0166:  BSF    03.5
+0167:  MOVWF  07
+....................     i2c_write(0xD1); 
+0168:  MOVLW  D1
+0169:  MOVWF  72
+016A:  BCF    03.5
+016B:  CALL   026
+....................     second = i2c_read(1); 
+016C:  MOVLW  01
+016D:  MOVWF  77
+016E:  CALL   0EB
+016F:  MOVF   78,W
+0170:  MOVWF  21
+....................     minute = i2c_read(1); 
+0171:  MOVLW  01
+0172:  MOVWF  77
+0173:  CALL   0EB
+0174:  MOVF   78,W
+0175:  MOVWF  22
+....................     hour   = i2c_read(1); 
+0176:  MOVLW  01
+0177:  MOVWF  77
+0178:  CALL   0EB
+0179:  MOVF   78,W
+017A:  MOVWF  23
+....................     day    = i2c_read(1); 
+017B:  MOVLW  01
+017C:  MOVWF  77
+017D:  CALL   0EB
+017E:  MOVF   78,W
+017F:  MOVWF  27
+....................     date   = i2c_read(1); 
+0180:  MOVLW  01
+0181:  MOVWF  77
+0182:  CALL   0EB
+0183:  MOVF   78,W
+0184:  MOVWF  24
+....................     month  = i2c_read(1); 
+0185:  MOVLW  01
+0186:  MOVWF  77
+0187:  CALL   0EB
+0188:  MOVF   78,W
+0189:  MOVWF  25
+....................     year   = i2c_read(0); 
+018A:  CLRF   77
+018B:  CALL   0EB
+018C:  MOVF   78,W
+018D:  MOVWF  26
+....................     i2c_stop(); 
+018E:  BCF    20.4
+018F:  MOVF   20,W
+0190:  BSF    03.5
+0191:  MOVWF  07
+0192:  NOP
+0193:  BCF    03.5
+0194:  BSF    20.3
+0195:  MOVF   20,W
+0196:  BSF    03.5
+0197:  MOVWF  07
+0198:  BCF    03.5
+0199:  BTFSS  07.3
+019A:  GOTO   199
+019B:  NOP
+019C:  GOTO   19D
+019D:  NOP
+019E:  BSF    20.4
+019F:  MOVF   20,W
+01A0:  BSF    03.5
+01A1:  MOVWF  07
+01A2:  NOP
+....................  
+....................     vmsg_pattern[8] = MaLed7Doan[date / 16]; 
+01A3:  BCF    03.5
+01A4:  SWAPF  24,W
+01A5:  MOVWF  77
+01A6:  MOVLW  0F
+01A7:  ANDWF  77,F
+01A8:  MOVF   77,W
+01A9:  CALL   004
+01AA:  MOVWF  78
+01AB:  MOVWF  41
+....................     vmsg_pattern[9] = MaLed7Doan[date % 16] & 0x7f; // dot 
+01AC:  MOVF   24,W
+01AD:  ANDLW  0F
+01AE:  CALL   004
+01AF:  ANDLW  7F
+01B0:  MOVWF  42
+....................     vmsg_pattern[10] = MaLed7Doan[month / 16]; 
+01B1:  SWAPF  25,W
+01B2:  MOVWF  77
+01B3:  MOVLW  0F
+01B4:  ANDWF  77,F
+01B5:  MOVF   77,W
+01B6:  CALL   004
+01B7:  MOVWF  78
+01B8:  MOVWF  43
+....................     vmsg_pattern[11] = MaLed7Doan[month % 16] & 0x7f; // dot 
+01B9:  MOVF   25,W
+01BA:  ANDLW  0F
+01BB:  CALL   004
+01BC:  ANDLW  7F
+01BD:  MOVWF  44
+....................     vmsg_pattern[12] = MaLed7Doan[2]; 
+01BE:  MOVLW  A4
+01BF:  MOVWF  45
+....................     vmsg_pattern[13] = MaLed7Doan[0]; 
+01C0:  MOVLW  C0
+01C1:  MOVWF  46
+....................     vmsg_pattern[14] = MaLed7Doan[year / 16]; 
+01C2:  SWAPF  26,W
+01C3:  MOVWF  77
+01C4:  MOVLW  0F
+01C5:  ANDWF  77,F
+01C6:  MOVF   77,W
+01C7:  CALL   004
+01C8:  MOVWF  78
+01C9:  MOVWF  47
+....................     vmsg_pattern[15] = MaLed7Doan[year % 16]; 
+01CA:  MOVF   26,W
+01CB:  ANDLW  0F
+01CC:  CALL   004
+01CD:  MOVWF  78
+01CE:  MOVWF  48
+....................     if (day == 0) 
+01CF:  MOVF   27,F
+01D0:  BTFSS  03.2
+01D1:  GOTO   1D7
+....................     { 
+....................         vmsg_pattern[22] = 0xc6; 
+01D2:  MOVLW  C6
+01D3:  MOVWF  4F
+....................         vmsg_pattern[23] = 0xc8; 
+01D4:  MOVLW  C8
+01D5:  MOVWF  50
+....................     } 
+01D6:  GOTO   1DD
+....................     else 
+....................     { 
+....................         vmsg_pattern[22] = MaLed7Doan[0]; 
+01D7:  MOVLW  C0
+01D8:  MOVWF  4F
+....................         vmsg_pattern[23] = MaLed7Doan[day]; 
+01D9:  MOVF   27,W
+01DA:  CALL   004
+01DB:  MOVWF  78
+01DC:  MOVWF  50
+....................     } 
+....................  
+....................     ValHienThi[8] = MaLed7Doan[second % 16]; 
+01DD:  MOVF   21,W
+01DE:  ANDLW  0F
+01DF:  CALL   004
+01E0:  MOVWF  78
+01E1:  MOVWF  31
+....................     ValHienThi[9] = MaLed7Doan[second / 16]; 
+01E2:  SWAPF  21,W
+01E3:  MOVWF  77
+01E4:  MOVLW  0F
+01E5:  ANDWF  77,F
+01E6:  MOVF   77,W
+01E7:  CALL   004
+01E8:  MOVWF  78
+01E9:  MOVWF  32
+....................     ValHienThi[10] = MaLed7Doan[minute % 16] & 0x7f; // dot 
+01EA:  MOVF   22,W
+01EB:  ANDLW  0F
+01EC:  CALL   004
+01ED:  ANDLW  7F
+01EE:  MOVWF  33
+....................     ValHienThi[11] = MaLed7Doan[minute / 16]; 
+01EF:  SWAPF  22,W
+01F0:  MOVWF  77
+01F1:  MOVLW  0F
+01F2:  ANDWF  77,F
+01F3:  MOVF   77,W
+01F4:  CALL   004
+01F5:  MOVWF  78
+01F6:  MOVWF  34
+....................     ValHienThi[12] = MaLed7Doan[hour % 16] & 0x7f; // dot 
+01F7:  MOVF   23,W
+01F8:  ANDLW  0F
+01F9:  CALL   004
+01FA:  ANDLW  7F
+01FB:  MOVWF  35
+....................     ValHienThi[13] = MaLed7Doan[hour / 16]; 
+01FC:  SWAPF  23,W
+01FD:  MOVWF  77
+01FE:  MOVLW  0F
+01FF:  ANDWF  77,F
+0200:  MOVF   77,W
+0201:  CALL   004
+0202:  MOVWF  78
+0203:  MOVWF  36
+....................     ValHienThi[14] = 0xFF; 
+0204:  MOVLW  FF
+0205:  MOVWF  37
+....................     ValHienThi[15] = 0xFF; 
+0206:  MOVWF  38
+0207:  RETURN
+.................... } 
+....................  
+.................... void Convert_BCD_to_Decimal() 
+.................... { 
+....................     second = (second >> 4) * 10 + (second & 0x0F); 
+*
+0330:  SWAPF  21,W
+0331:  MOVWF  77
+0332:  MOVLW  0F
+0333:  ANDWF  77,F
+0334:  MOVF   77,W
+0335:  MOVWF  73
+0336:  MOVWF  74
+0337:  MOVLW  0A
+0338:  MOVWF  75
+0339:  CALL   30B
+033A:  MOVF   21,W
+033B:  ANDLW  0F
+033C:  ADDWF  78,W
+033D:  MOVWF  21
+....................     minute = (minute >> 4) * 10 + (minute & 0x0F); 
+033E:  SWAPF  22,W
+033F:  MOVWF  77
+0340:  MOVLW  0F
+0341:  ANDWF  77,F
+0342:  MOVF   77,W
+0343:  MOVWF  73
+0344:  MOVWF  74
+0345:  MOVLW  0A
+0346:  MOVWF  75
+0347:  CALL   30B
+0348:  MOVF   22,W
+0349:  ANDLW  0F
+034A:  ADDWF  78,W
+034B:  MOVWF  22
+....................     hour   = (hour >> 4) * 10 + (hour & 0x0F); 
+034C:  SWAPF  23,W
+034D:  MOVWF  77
+034E:  MOVLW  0F
+034F:  ANDWF  77,F
+0350:  MOVF   77,W
+0351:  MOVWF  73
+0352:  MOVWF  74
+0353:  MOVLW  0A
+0354:  MOVWF  75
+0355:  CALL   30B
+0356:  MOVF   23,W
+0357:  ANDLW  0F
+0358:  ADDWF  78,W
+0359:  MOVWF  23
+....................     date   = (date >> 4) * 10 + (date & 0x0F); 
+035A:  SWAPF  24,W
+035B:  MOVWF  77
+035C:  MOVLW  0F
+035D:  ANDWF  77,F
+035E:  MOVF   77,W
+035F:  MOVWF  73
+0360:  MOVWF  74
+0361:  MOVLW  0A
+0362:  MOVWF  75
+0363:  CALL   30B
+0364:  MOVF   24,W
+0365:  ANDLW  0F
+0366:  ADDWF  78,W
+0367:  MOVWF  24
+....................     month  = (month >> 4) * 10 + (month & 0x0F); 
+0368:  SWAPF  25,W
+0369:  MOVWF  77
+036A:  MOVLW  0F
+036B:  ANDWF  77,F
+036C:  MOVF   77,W
+036D:  MOVWF  73
+036E:  MOVWF  74
+036F:  MOVLW  0A
+0370:  MOVWF  75
+0371:  CALL   30B
+0372:  MOVF   25,W
+0373:  ANDLW  0F
+0374:  ADDWF  78,W
+0375:  MOVWF  25
+....................     year   = (year >> 4) * 10 + (year & 0x0F); 
+0376:  SWAPF  26,W
+0377:  MOVWF  77
+0378:  MOVLW  0F
+0379:  ANDWF  77,F
+037A:  MOVF   77,W
+037B:  MOVWF  73
+037C:  MOVWF  74
+037D:  MOVLW  0A
+037E:  MOVWF  75
+037F:  CALL   30B
+0380:  MOVF   26,W
+0381:  ANDLW  0F
+0382:  ADDWF  78,W
+0383:  MOVWF  26
+0384:  RETURN
+.................... } 
+....................  
+.................... void Convert_Decimal_to_BCD() 
+.................... { 
+....................     // x = (x / 10) << 4 + (x % 10) 
+....................     second = ((second / 10) << 4) + (second % 10); 
+*
+039A:  MOVF   21,W
+039B:  MOVWF  73
+039C:  MOVLW  0A
+039D:  MOVWF  74
+039E:  CALL   385
+039F:  SWAPF  78,W
+03A0:  MOVWF  72
+03A1:  MOVLW  F0
+03A2:  ANDWF  72,F
+03A3:  MOVF   21,W
+03A4:  MOVWF  73
+03A5:  MOVLW  0A
+03A6:  MOVWF  74
+03A7:  CALL   385
+03A8:  MOVF   77,W
+03A9:  ADDWF  72,W
+03AA:  MOVWF  21
+....................     minute = ((minute / 10) << 4) + (minute % 10); 
+03AB:  MOVF   22,W
+03AC:  MOVWF  73
+03AD:  MOVLW  0A
+03AE:  MOVWF  74
+03AF:  CALL   385
+03B0:  SWAPF  78,W
+03B1:  MOVWF  72
+03B2:  MOVLW  F0
+03B3:  ANDWF  72,F
+03B4:  MOVF   22,W
+03B5:  MOVWF  73
+03B6:  MOVLW  0A
+03B7:  MOVWF  74
+03B8:  CALL   385
+03B9:  MOVF   77,W
+03BA:  ADDWF  72,W
+03BB:  MOVWF  22
+....................     hour   = ((hour / 10) << 4) + (hour % 10); 
+03BC:  MOVF   23,W
+03BD:  MOVWF  73
+03BE:  MOVLW  0A
+03BF:  MOVWF  74
+03C0:  CALL   385
+03C1:  SWAPF  78,W
+03C2:  MOVWF  72
+03C3:  MOVLW  F0
+03C4:  ANDWF  72,F
+03C5:  MOVF   23,W
+03C6:  MOVWF  73
+03C7:  MOVLW  0A
+03C8:  MOVWF  74
+03C9:  CALL   385
+03CA:  MOVF   77,W
+03CB:  ADDWF  72,W
+03CC:  MOVWF  23
+....................     date   = ((date / 10) << 4) + (date % 10); 
+03CD:  MOVF   24,W
+03CE:  MOVWF  73
+03CF:  MOVLW  0A
+03D0:  MOVWF  74
+03D1:  CALL   385
+03D2:  SWAPF  78,W
+03D3:  MOVWF  72
+03D4:  MOVLW  F0
+03D5:  ANDWF  72,F
+03D6:  MOVF   24,W
+03D7:  MOVWF  73
+03D8:  MOVLW  0A
+03D9:  MOVWF  74
+03DA:  CALL   385
+03DB:  MOVF   77,W
+03DC:  ADDWF  72,W
+03DD:  MOVWF  24
+....................     month  = ((month / 10) << 4) + (month % 10); 
+03DE:  MOVF   25,W
+03DF:  MOVWF  73
+03E0:  MOVLW  0A
+03E1:  MOVWF  74
+03E2:  CALL   385
+03E3:  SWAPF  78,W
+03E4:  MOVWF  72
+03E5:  MOVLW  F0
+03E6:  ANDWF  72,F
+03E7:  MOVF   25,W
+03E8:  MOVWF  73
+03E9:  MOVLW  0A
+03EA:  MOVWF  74
+03EB:  CALL   385
+03EC:  MOVF   77,W
+03ED:  ADDWF  72,W
+03EE:  MOVWF  25
+....................     year   = ((year / 10) << 4) + (year % 10); 
+03EF:  MOVF   26,W
+03F0:  MOVWF  73
+03F1:  MOVLW  0A
+03F2:  MOVWF  74
+03F3:  CALL   385
+03F4:  SWAPF  78,W
+03F5:  MOVWF  72
+03F6:  MOVLW  F0
+03F7:  ANDWF  72,F
+03F8:  MOVF   26,W
+03F9:  MOVWF  73
+03FA:  MOVLW  0A
+03FB:  MOVWF  74
+03FC:  CALL   385
+03FD:  MOVF   77,W
+03FE:  ADDWF  72,W
+03FF:  MOVWF  26
+0400:  RETURN
+.................... } 
+....................  
+.................... void ds1307_write(unsigned int8 address, unsigned int8 data) 
+.................... { 
+....................     i2c_start(); 
+*
+0070:  BSF    20.4
+0071:  MOVF   20,W
+0072:  BSF    03.5
+0073:  MOVWF  07
+0074:  NOP
+0075:  BCF    03.5
+0076:  BSF    20.3
+0077:  MOVF   20,W
+0078:  BSF    03.5
+0079:  MOVWF  07
+007A:  NOP
+007B:  BCF    03.5
+007C:  BCF    07.4
+007D:  BCF    20.4
+007E:  MOVF   20,W
+007F:  BSF    03.5
+0080:  MOVWF  07
+0081:  NOP
+0082:  BCF    03.5
+0083:  BCF    07.3
+0084:  BCF    20.3
+0085:  MOVF   20,W
+0086:  BSF    03.5
+0087:  MOVWF  07
+....................     i2c_write(0xD0); 
+0088:  MOVLW  D0
+0089:  MOVWF  72
+008A:  BCF    03.5
+008B:  CALL   026
+....................     i2c_write(address); 
+008C:  MOVF   70,W
+008D:  MOVWF  72
+008E:  CALL   026
+....................     i2c_write(data); 
+008F:  MOVF   71,W
+0090:  MOVWF  72
+0091:  CALL   026
+....................     i2c_stop(); 
+0092:  BCF    20.4
+0093:  MOVF   20,W
+0094:  BSF    03.5
+0095:  MOVWF  07
+0096:  NOP
+0097:  BCF    03.5
+0098:  BSF    20.3
+0099:  MOVF   20,W
+009A:  BSF    03.5
+009B:  MOVWF  07
+009C:  BCF    03.5
+009D:  BTFSS  07.3
+009E:  GOTO   09D
+009F:  NOP
+00A0:  GOTO   0A1
+00A1:  NOP
+00A2:  BSF    20.4
+00A3:  MOVF   20,W
+00A4:  BSF    03.5
+00A5:  MOVWF  07
+00A6:  NOP
+00A7:  BCF    03.5
+00A8:  RETURN
+.................... } 
+....................  
+.................... // Adjust flag coi 
+.................... void function_Adj_flag_coi() 
+.................... { 
+....................     if (!input(INC)) 
+*
+0558:  BSF    03.5
+0559:  BSF    06.7
+055A:  BCF    03.5
+055B:  BTFSC  06.7
+055C:  GOTO   5C5
+....................     { 
+....................         delay_ms(20); 
+055D:  MOVLW  14
+055E:  MOVWF  73
+055F:  CALL   0D7
+....................         if (!input(INC)) 
+0560:  BSF    03.5
+0561:  BSF    06.7
+0562:  BCF    03.5
+0563:  BTFSC  06.7
+0564:  GOTO   5C5
+....................         { 
+....................             while (input(INC) == 0) {} 
+0565:  BSF    03.5
+0566:  BSF    06.7
+0567:  BCF    03.5
+0568:  BTFSS  06.7
+0569:  GOTO   565
+....................             flag_coi = ~flag_coi; 
+056A:  MOVLW  01
+056B:  XORWF  28,F
+....................              
+....................             if (flag_coi == 1) 
+056C:  BTFSS  28.0
+056D:  GOTO   5A6
+....................             { 
+....................             output_a(0xFF); 
+056E:  BSF    03.5
+056F:  CLRF   05
+0570:  MOVLW  FF
+0571:  BCF    03.5
+0572:  MOVWF  05
+....................             output_high(S_COI); 
+0573:  BSF    03.5
+0574:  BCF    08.6
+0575:  BCF    03.5
+0576:  BSF    08.6
+....................             delay_ms(500); 
+0577:  MOVLW  02
+0578:  MOVWF  70
+0579:  MOVLW  FA
+057A:  MOVWF  73
+057B:  CALL   0D7
+057C:  DECFSZ 70,F
+057D:  GOTO   579
+....................  
+....................             output_a(0x00); 
+057E:  BSF    03.5
+057F:  CLRF   05
+0580:  BCF    03.5
+0581:  CLRF   05
+....................             output_low(S_COI); 
+0582:  BSF    03.5
+0583:  BCF    08.6
+0584:  BCF    03.5
+0585:  BCF    08.6
+....................             delay_ms(500); 
+0586:  MOVLW  02
+0587:  MOVWF  70
+0588:  MOVLW  FA
+0589:  MOVWF  73
+058A:  CALL   0D7
+058B:  DECFSZ 70,F
+058C:  GOTO   588
+....................  
+....................             output_a(0xFF); 
+058D:  BSF    03.5
+058E:  CLRF   05
+058F:  MOVLW  FF
+0590:  BCF    03.5
+0591:  MOVWF  05
+....................             output_high(S_COI); 
+0592:  BSF    03.5
+0593:  BCF    08.6
+0594:  BCF    03.5
+0595:  BSF    08.6
+....................             delay_ms(500); 
+0596:  MOVLW  02
+0597:  MOVWF  70
+0598:  MOVLW  FA
+0599:  MOVWF  73
+059A:  CALL   0D7
+059B:  DECFSZ 70,F
+059C:  GOTO   598
+....................  
+....................             output_a(0x00); 
+059D:  BSF    03.5
+059E:  CLRF   05
+059F:  BCF    03.5
+05A0:  CLRF   05
+....................             output_low(S_COI); 
+05A1:  BSF    03.5
+05A2:  BCF    08.6
+05A3:  BCF    03.5
+05A4:  BCF    08.6
+....................             } 
+05A5:  GOTO   5BE
+....................             else 
+....................             { 
+....................             output_a(0xFF); 
+05A6:  BSF    03.5
+05A7:  CLRF   05
+05A8:  MOVLW  FF
+05A9:  BCF    03.5
+05AA:  MOVWF  05
+....................             output_high(S_COI); 
+05AB:  BSF    03.5
+05AC:  BCF    08.6
+05AD:  BCF    03.5
+05AE:  BSF    08.6
+....................             delay_ms(500); 
+05AF:  MOVLW  02
+05B0:  MOVWF  70
+05B1:  MOVLW  FA
+05B2:  MOVWF  73
+05B3:  CALL   0D7
+05B4:  DECFSZ 70,F
+05B5:  GOTO   5B1
+....................  
+....................             output_a(0x00); 
+05B6:  BSF    03.5
+05B7:  CLRF   05
+05B8:  BCF    03.5
+05B9:  CLRF   05
+....................             output_low(S_COI); 
+05BA:  BSF    03.5
+05BB:  BCF    08.6
+05BC:  BCF    03.5
+05BD:  BCF    08.6
+....................  
+....................             } 
+....................  
+....................             delay_ms(500); 
+05BE:  MOVLW  02
+05BF:  MOVWF  70
+05C0:  MOVLW  FA
+05C1:  MOVWF  73
+05C2:  CALL   0D7
+05C3:  DECFSZ 70,F
+05C4:  GOTO   5C0
+....................         } 
+....................     } 
+.................... } 
+....................  
+.................... void Adjust_Time_Calendar() 
+.................... { 
+....................     if (!input(MOD)) 
+05C5:  BSF    03.5
+05C6:  BSF    06.0
+05C7:  BCF    03.5
+05C8:  BTFSC  06.0
+05C9:  GOTO   767
+....................         { 
+....................             Convert_BCD_to_Decimal(); 
+05CA:  CALL   330
+....................             // Set seconds to 00 
+....................             second = 0; 
+05CB:  CLRF   21
+....................  
+....................             // Adjust minutes 
+....................             while (TRUE) 
+....................             { 
+....................                 if (!input(INC)) minute++; 
+05CC:  BSF    03.5
+05CD:  BSF    06.7
+05CE:  BCF    03.5
+05CF:  BTFSS  06.7
+05D0:  INCF   22,F
+....................                 if (minute > 59) minute = 0; 
+05D1:  MOVF   22,W
+05D2:  SUBLW  3B
+05D3:  BTFSS  03.0
+05D4:  CLRF   22
+....................                 Convert_Decimal_to_BCD(); 
+05D5:  CALL   39A
+....................                 ValHienThi[10] = 0xFF; 
+05D6:  MOVLW  FF
+05D7:  MOVWF  33
+....................                 ValHienThi[11] = 0xFF; 
+05D8:  MOVWF  34
+....................                 HienThiVal_With_Delay(ValHienThi, TIME_DELAY); 
+05D9:  CLRF   71
+05DA:  MOVLW  29
+05DB:  MOVWF  70
+05DC:  CLRF   73
+05DD:  MOVLW  1E
+05DE:  MOVWF  72
+05DF:  CALL   22D
+....................                 ValHienThi[10] = MaLed7Doan[minute % 16] & 0x7f; // dot 
+05E0:  MOVF   22,W
+05E1:  ANDLW  0F
+05E2:  CALL   004
+05E3:  ANDLW  7F
+05E4:  MOVWF  33
+....................                 ValHienThi[11] = MaLed7Doan[minute / 16]; 
+05E5:  SWAPF  22,W
+05E6:  MOVWF  77
+05E7:  MOVLW  0F
+05E8:  ANDWF  77,F
+05E9:  MOVF   77,W
+05EA:  CALL   004
+05EB:  MOVWF  78
+05EC:  MOVWF  34
+....................                 HienThiVal_With_Delay(ValHienThi, TIME_DELAY); 
+05ED:  CLRF   71
+05EE:  MOVLW  29
+05EF:  MOVWF  70
+05F0:  CLRF   73
+05F1:  MOVLW  1E
+05F2:  MOVWF  72
+05F3:  CALL   22D
+....................                 Convert_BCD_to_Decimal(); 
+05F4:  CALL   330
+....................                 if (!input(MOD)) 
+05F5:  BSF    03.5
+05F6:  BSF    06.0
+05F7:  BCF    03.5
+05F8:  BTFSC  06.0
+05F9:  GOTO   608
+....................                 { 
+....................                     delay_ms(20); 
+05FA:  MOVLW  14
+05FB:  MOVWF  73
+05FC:  CALL   0D7
+....................                     if (!input(MOD)) 
+05FD:  BSF    03.5
+05FE:  BSF    06.0
+05FF:  BCF    03.5
+0600:  BTFSC  06.0
+0601:  GOTO   607
+....................                     { 
+....................                         while (input(MOD) == 0) {} 
+0602:  BSF    03.5
+0603:  BSF    06.0
+0604:  BCF    03.5
+0605:  BTFSS  06.0
+0606:  GOTO   602
+....................                     } 
+....................                     break; 
+0607:  GOTO   609
+....................                 } 
+0608:  GOTO   5CC
+....................             } 
+....................  
+....................             // Adjust hours 
+....................             while (TRUE) 
+....................             { 
+....................                 if (!input(INC)) hour++; 
+0609:  BSF    03.5
+060A:  BSF    06.7
+060B:  BCF    03.5
+060C:  BTFSS  06.7
+060D:  INCF   23,F
+....................                 if (hour > 23) hour = 0; 
+060E:  MOVF   23,W
+060F:  SUBLW  17
+0610:  BTFSS  03.0
+0611:  CLRF   23
+....................                 Convert_Decimal_to_BCD(); 
+0612:  CALL   39A
+....................                 ValHienThi[12] = 0xFF; 
+0613:  MOVLW  FF
+0614:  MOVWF  35
+....................                 ValHienThi[13] = 0xFF; 
+0615:  MOVWF  36
+....................                 HienThiVal_With_Delay(ValHienThi, TIME_DELAY); 
+0616:  CLRF   71
+0617:  MOVLW  29
+0618:  MOVWF  70
+0619:  CLRF   73
+061A:  MOVLW  1E
+061B:  MOVWF  72
+061C:  CALL   22D
+....................                 ValHienThi[12] = MaLed7Doan[hour % 16] & 0x7f; // dot 
+061D:  MOVF   23,W
+061E:  ANDLW  0F
+061F:  CALL   004
+0620:  ANDLW  7F
+0621:  MOVWF  35
+....................                 ValHienThi[13] = MaLed7Doan[hour / 16]; 
+0622:  SWAPF  23,W
+0623:  MOVWF  77
+0624:  MOVLW  0F
+0625:  ANDWF  77,F
+0626:  MOVF   77,W
+0627:  CALL   004
+0628:  MOVWF  78
+0629:  MOVWF  36
+....................                 HienThiVal_With_Delay(ValHienThi, TIME_DELAY); 
+062A:  CLRF   71
+062B:  MOVLW  29
+062C:  MOVWF  70
+062D:  CLRF   73
+062E:  MOVLW  1E
+062F:  MOVWF  72
+0630:  CALL   22D
+....................                 Convert_BCD_to_Decimal(); 
+0631:  CALL   330
+....................                 if (!input(MOD)) 
+0632:  BSF    03.5
+0633:  BSF    06.0
+0634:  BCF    03.5
+0635:  BTFSC  06.0
+0636:  GOTO   645
+....................                 { 
+....................                     delay_ms(20); 
+0637:  MOVLW  14
+0638:  MOVWF  73
+0639:  CALL   0D7
+....................                     if (!input(MOD)) 
+063A:  BSF    03.5
+063B:  BSF    06.0
+063C:  BCF    03.5
+063D:  BTFSC  06.0
+063E:  GOTO   644
+....................                     { 
+....................                         while (input(MOD) == 0) {} 
+063F:  BSF    03.5
+0640:  BSF    06.0
+0641:  BCF    03.5
+0642:  BTFSS  06.0
+0643:  GOTO   63F
+....................                     } 
+....................                     break; 
+0644:  GOTO   646
+....................                 } 
+0645:  GOTO   609
+....................             } 
+....................  
+....................             // Adjust date 
+....................             while (TRUE) 
+....................             { 
+....................                 if (!input(INC)) date++; 
+0646:  BSF    03.5
+0647:  BSF    06.7
+0648:  BCF    03.5
+0649:  BTFSS  06.7
+064A:  INCF   24,F
+....................                 if (date > 31) date = 1; 
+064B:  MOVF   24,W
+064C:  SUBLW  1F
+064D:  BTFSC  03.0
+064E:  GOTO   651
+064F:  MOVLW  01
+0650:  MOVWF  24
+....................                 Convert_Decimal_to_BCD(); 
+0651:  CALL   39A
+....................                 ValHienThi[6] = 0xFF; 
+0652:  MOVLW  FF
+0653:  MOVWF  2F
+....................                 ValHienThi[7] = 0xFF; 
+0654:  MOVWF  30
+....................                 HienThiVal_With_Delay(ValHienThi, TIME_DELAY); 
+0655:  CLRF   71
+0656:  MOVLW  29
+0657:  MOVWF  70
+0658:  CLRF   73
+0659:  MOVLW  1E
+065A:  MOVWF  72
+065B:  CALL   22D
+....................                 ValHienThi[6] = MaLed7Doan[date % 16] & 0x7f; // dot 
+065C:  MOVF   24,W
+065D:  ANDLW  0F
+065E:  CALL   004
+065F:  ANDLW  7F
+0660:  MOVWF  2F
+....................                 ValHienThi[7] = MaLed7Doan[date / 16]; 
+0661:  SWAPF  24,W
+0662:  MOVWF  77
+0663:  MOVLW  0F
+0664:  ANDWF  77,F
+0665:  MOVF   77,W
+0666:  CALL   004
+0667:  MOVWF  78
+0668:  MOVWF  30
+....................                 HienThiVal_With_Delay(ValHienThi, TIME_DELAY); 
+0669:  CLRF   71
+066A:  MOVLW  29
+066B:  MOVWF  70
+066C:  CLRF   73
+066D:  MOVLW  1E
+066E:  MOVWF  72
+066F:  CALL   22D
+....................                 Convert_BCD_to_Decimal(); 
+0670:  CALL   330
+....................                 if (!input(MOD)) 
+0671:  BSF    03.5
+0672:  BSF    06.0
+0673:  BCF    03.5
+0674:  BTFSC  06.0
+0675:  GOTO   684
+....................                 { 
+....................                     delay_ms(20); 
+0676:  MOVLW  14
+0677:  MOVWF  73
+0678:  CALL   0D7
+....................                     if (!input(MOD)) 
+0679:  BSF    03.5
+067A:  BSF    06.0
+067B:  BCF    03.5
+067C:  BTFSC  06.0
+067D:  GOTO   683
+....................                     { 
+....................                         while (input(MOD) == 0) {} 
+067E:  BSF    03.5
+067F:  BSF    06.0
+0680:  BCF    03.5
+0681:  BTFSS  06.0
+0682:  GOTO   67E
+....................                     } 
+....................                     break; 
+0683:  GOTO   685
+....................                 } 
+0684:  GOTO   646
+....................             } 
+....................  
+....................             // Adjust month 
+....................             while (TRUE) 
+....................             { 
+....................                 if (!input(INC)) month++; 
+0685:  BSF    03.5
+0686:  BSF    06.7
+0687:  BCF    03.5
+0688:  BTFSS  06.7
+0689:  INCF   25,F
+....................                 if (month > 12) month = 1; 
+068A:  MOVF   25,W
+068B:  SUBLW  0C
+068C:  BTFSC  03.0
+068D:  GOTO   690
+068E:  MOVLW  01
+068F:  MOVWF  25
+....................                 Convert_Decimal_to_BCD(); 
+0690:  CALL   39A
+....................                 ValHienThi[4] = 0xFF; 
+0691:  MOVLW  FF
+0692:  MOVWF  2D
+....................                 ValHienThi[5] = 0xFF; 
+0693:  MOVWF  2E
+....................                 HienThiVal_With_Delay(ValHienThi, TIME_DELAY); 
+0694:  CLRF   71
+0695:  MOVLW  29
+0696:  MOVWF  70
+0697:  CLRF   73
+0698:  MOVLW  1E
+0699:  MOVWF  72
+069A:  CALL   22D
+....................                 ValHienThi[4] = MaLed7Doan[month % 16] & 0x7f; // dot 
+069B:  MOVF   25,W
+069C:  ANDLW  0F
+069D:  CALL   004
+069E:  ANDLW  7F
+069F:  MOVWF  2D
+....................                 ValHienThi[5] = MaLed7Doan[month / 16]; 
+06A0:  SWAPF  25,W
+06A1:  MOVWF  77
+06A2:  MOVLW  0F
+06A3:  ANDWF  77,F
+06A4:  MOVF   77,W
+06A5:  CALL   004
+06A6:  MOVWF  78
+06A7:  MOVWF  2E
+....................                 HienThiVal_With_Delay(ValHienThi, TIME_DELAY); 
+06A8:  CLRF   71
+06A9:  MOVLW  29
+06AA:  MOVWF  70
+06AB:  CLRF   73
+06AC:  MOVLW  1E
+06AD:  MOVWF  72
+06AE:  CALL   22D
+....................                 Convert_BCD_to_Decimal(); 
+06AF:  CALL   330
+....................                 if (!input(MOD)) 
+06B0:  BSF    03.5
+06B1:  BSF    06.0
+06B2:  BCF    03.5
+06B3:  BTFSC  06.0
+06B4:  GOTO   6C3
+....................                 { 
+....................                     delay_ms(20); 
+06B5:  MOVLW  14
+06B6:  MOVWF  73
+06B7:  CALL   0D7
+....................                     if (!input(MOD)) 
+06B8:  BSF    03.5
+06B9:  BSF    06.0
+06BA:  BCF    03.5
+06BB:  BTFSC  06.0
+06BC:  GOTO   6C2
+....................                     { 
+....................                         while (input(MOD) == 0) {} 
+06BD:  BSF    03.5
+06BE:  BSF    06.0
+06BF:  BCF    03.5
+06C0:  BTFSS  06.0
+06C1:  GOTO   6BD
+....................                     } 
+....................                     break; 
+06C2:  GOTO   6C4
+....................                 } 
+06C3:  GOTO   685
+....................             } 
+....................  
+....................             // Adjust year 
+....................             while (TRUE) 
+....................             { 
+....................                 if (!input(INC)) year++; 
+06C4:  BSF    03.5
+06C5:  BSF    06.7
+06C6:  BCF    03.5
+06C7:  BTFSS  06.7
+06C8:  INCF   26,F
+....................                 if (year > 50) year = 0; 
+06C9:  MOVF   26,W
+06CA:  SUBLW  32
+06CB:  BTFSS  03.0
+06CC:  CLRF   26
+....................                 Convert_Decimal_to_BCD(); 
+06CD:  CALL   39A
+....................                 ValHienThi[0] = 0xFF; 
+06CE:  MOVLW  FF
+06CF:  MOVWF  29
+....................                 ValHienThi[1] = 0xFF; 
+06D0:  MOVWF  2A
+....................                 HienThiVal_With_Delay(ValHienThi, TIME_DELAY); 
+06D1:  CLRF   71
+06D2:  MOVLW  29
+06D3:  MOVWF  70
+06D4:  CLRF   73
+06D5:  MOVLW  1E
+06D6:  MOVWF  72
+06D7:  CALL   22D
+....................                 ValHienThi[0] = MaLed7Doan[year % 16]; 
+06D8:  MOVF   26,W
+06D9:  ANDLW  0F
+06DA:  CALL   004
+06DB:  MOVWF  78
+06DC:  MOVWF  29
+....................                 ValHienThi[1] = MaLed7Doan[year / 16]; 
+06DD:  SWAPF  26,W
+06DE:  MOVWF  77
+06DF:  MOVLW  0F
+06E0:  ANDWF  77,F
+06E1:  MOVF   77,W
+06E2:  CALL   004
+06E3:  MOVWF  78
+06E4:  MOVWF  2A
+....................                 HienThiVal_With_Delay(ValHienThi, TIME_DELAY); 
+06E5:  CLRF   71
+06E6:  MOVLW  29
+06E7:  MOVWF  70
+06E8:  CLRF   73
+06E9:  MOVLW  1E
+06EA:  MOVWF  72
+06EB:  CALL   22D
+....................                 Convert_BCD_to_Decimal(); 
+06EC:  CALL   330
+....................                 if (!input(MOD)) 
+06ED:  BSF    03.5
+06EE:  BSF    06.0
+06EF:  BCF    03.5
+06F0:  BTFSC  06.0
+06F1:  GOTO   700
+....................                 { 
+....................                     delay_ms(20); 
+06F2:  MOVLW  14
+06F3:  MOVWF  73
+06F4:  CALL   0D7
+....................                     if (!input(MOD)) 
+06F5:  BSF    03.5
+06F6:  BSF    06.0
+06F7:  BCF    03.5
+06F8:  BTFSC  06.0
+06F9:  GOTO   6FF
+....................                     { 
+....................                         while (input(MOD) == 0) {} 
+06FA:  BSF    03.5
+06FB:  BSF    06.0
+06FC:  BCF    03.5
+06FD:  BTFSS  06.0
+06FE:  GOTO   6FA
+....................                     } 
+....................                     break; 
+06FF:  GOTO   701
+....................                 } 
+0700:  GOTO   6C4
+....................             } 
+....................  
+....................             // Adjust day of week 
+....................             while (TRUE) 
+....................             { 
+....................                 if (!input(INC)) day++; 
+0701:  BSF    03.5
+0702:  BSF    06.7
+0703:  BCF    03.5
+0704:  BTFSS  06.7
+0705:  INCF   27,F
+....................                 if (day > 7) day = 1; 
+0706:  MOVF   27,W
+0707:  SUBLW  07
+0708:  BTFSC  03.0
+0709:  GOTO   70C
+070A:  MOVLW  01
+070B:  MOVWF  27
+....................                 Convert_Decimal_to_BCD(); 
+070C:  CALL   39A
+....................                 ValHienThi[2] = 0xFF; 
+070D:  MOVLW  FF
+070E:  MOVWF  2B
+....................                 ValHienThi[3] = 0xFF; 
+070F:  MOVWF  2C
+....................                 HienThiVal_With_Delay(ValHienThi, TIME_DELAY); 
+0710:  CLRF   71
+0711:  MOVLW  29
+0712:  MOVWF  70
+0713:  CLRF   73
+0714:  MOVLW  1E
+0715:  MOVWF  72
+0716:  CALL   22D
+....................                 if (day == 0) 
+0717:  MOVF   27,F
+0718:  BTFSS  03.2
+0719:  GOTO   71F
+....................                 { 
+....................                     ValHienThi[2] = 0xc8; 
+071A:  MOVLW  C8
+071B:  MOVWF  2B
+....................                     ValHienThi[3] = 0xc6; 
+071C:  MOVLW  C6
+071D:  MOVWF  2C
+....................                 } 
+071E:  GOTO   725
+....................                 else 
+....................                 { 
+....................                     ValHienThi[3] = MaLed7Doan[0]; 
+071F:  MOVLW  C0
+0720:  MOVWF  2C
+....................                     ValHienThi[2] = MaLed7Doan[day]; 
+0721:  MOVF   27,W
+0722:  CALL   004
+0723:  MOVWF  78
+0724:  MOVWF  2B
+....................                 } 
+....................                 HienThiVal_With_Delay(ValHienThi, TIME_DELAY); 
+0725:  CLRF   71
+0726:  MOVLW  29
+0727:  MOVWF  70
+0728:  CLRF   73
+0729:  MOVLW  1E
+072A:  MOVWF  72
+072B:  CALL   22D
+....................                 Convert_BCD_to_Decimal(); 
+072C:  CALL   330
+....................                 if (!input(MOD)) 
+072D:  BSF    03.5
+072E:  BSF    06.0
+072F:  BCF    03.5
+0730:  BTFSC  06.0
+0731:  GOTO   740
+....................                 { 
+....................                     delay_ms(20); 
+0732:  MOVLW  14
+0733:  MOVWF  73
+0734:  CALL   0D7
+....................                     if (!input(MOD)) 
+0735:  BSF    03.5
+0736:  BSF    06.0
+0737:  BCF    03.5
+0738:  BTFSC  06.0
+0739:  GOTO   73F
+....................                     { 
+....................                         while (input(MOD) == 0) {} 
+073A:  BSF    03.5
+073B:  BSF    06.0
+073C:  BCF    03.5
+073D:  BTFSS  06.0
+073E:  GOTO   73A
+....................                     } 
+....................                     break; 
+073F:  GOTO   741
+....................                 } 
+0740:  GOTO   701
+....................             } 
+....................  
+....................             Convert_Decimal_to_BCD(); 
+0741:  CALL   39A
+....................             // Write time and calendar to DS1307 
+....................             ds1307_write(0x00, second); 
+0742:  CLRF   70
+0743:  MOVF   21,W
+0744:  MOVWF  71
+0745:  CALL   070
+....................             ds1307_write(0x01, minute); 
+0746:  MOVLW  01
+0747:  MOVWF  70
+0748:  MOVF   22,W
+0749:  MOVWF  71
+074A:  CALL   070
+....................             ds1307_write(0x02, hour); 
+074B:  MOVLW  02
+074C:  MOVWF  70
+074D:  MOVF   23,W
+074E:  MOVWF  71
+074F:  CALL   070
+....................             ds1307_write(0x03, day); 
+0750:  MOVLW  03
+0751:  MOVWF  70
+0752:  MOVF   27,W
+0753:  MOVWF  71
+0754:  CALL   070
+....................             ds1307_write(0x04, date); 
+0755:  MOVLW  04
+0756:  MOVWF  70
+0757:  MOVF   24,W
+0758:  MOVWF  71
+0759:  CALL   070
+....................             ds1307_write(0x05, month); 
+075A:  MOVLW  05
+075B:  MOVWF  70
+075C:  MOVF   25,W
+075D:  MOVWF  71
+075E:  CALL   070
+....................             ds1307_write(0x06, year); 
+075F:  MOVLW  06
+0760:  MOVWF  70
+0761:  MOVF   26,W
+0762:  MOVWF  71
+0763:  CALL   070
+....................             delay_ms(200); 
+0764:  MOVLW  C8
+0765:  MOVWF  73
+0766:  CALL   0D7
+....................         } 
+.................... } 
+....................  
+.................... // Thiết lập thời gian và lịch ban đầu cho DS1307, thời gian bắt đầu từ 08:00:00, ngày 04/02/2026, Thứ 4 
+.................... void setup_Time_Calendar() 
+.................... { 
+....................     second = 0x00; 
+*
+00A9:  CLRF   21
+....................     minute = 0x00; 
+00AA:  CLRF   22
+....................     hour   = 0x08; 
+00AB:  MOVLW  08
+00AC:  MOVWF  23
+....................     day    = 0x04; // Thứ 4 
+00AD:  MOVLW  04
+00AE:  MOVWF  27
+....................     date   = 0x04; 
+00AF:  MOVWF  24
+....................     month  = 0x02; 
+00B0:  MOVLW  02
+00B1:  MOVWF  25
+....................     year   = 0x26; 
+00B2:  MOVLW  26
+00B3:  MOVWF  26
+....................  
+....................     ds1307_write(0x00, second); 
+00B4:  CLRF   70
+00B5:  MOVF   21,W
+00B6:  MOVWF  71
+00B7:  CALL   070
+....................     ds1307_write(0x01, minute); 
+00B8:  MOVLW  01
+00B9:  MOVWF  70
+00BA:  MOVF   22,W
+00BB:  MOVWF  71
+00BC:  CALL   070
+....................     ds1307_write(0x02, hour); 
+00BD:  MOVLW  02
+00BE:  MOVWF  70
+00BF:  MOVF   23,W
+00C0:  MOVWF  71
+00C1:  CALL   070
+....................     ds1307_write(0x03, day); 
+00C2:  MOVLW  03
+00C3:  MOVWF  70
+00C4:  MOVF   27,W
+00C5:  MOVWF  71
+00C6:  CALL   070
+....................     ds1307_write(0x04, date); 
+00C7:  MOVLW  04
+00C8:  MOVWF  70
+00C9:  MOVF   24,W
+00CA:  MOVWF  71
+00CB:  CALL   070
+....................     ds1307_write(0x05, month); 
+00CC:  MOVLW  05
+00CD:  MOVWF  70
+00CE:  MOVF   25,W
+00CF:  MOVWF  71
+00D0:  CALL   070
+....................     ds1307_write(0x06, year); 
+00D1:  MOVLW  06
+00D2:  MOVWF  70
+00D3:  MOVF   26,W
+00D4:  MOVWF  71
+00D5:  CALL   070
+00D6:  RETURN
+.................... } 
+....................  
+.................... void main() 
+*
+0800:  MOVF   03,W
+0801:  ANDLW  1F
+0802:  MOVWF  03
+0803:  MOVLW  71
+0804:  BSF    03.5
+0805:  MOVWF  0F
+0806:  MOVF   0F,W
+0807:  MOVLW  FF
+0808:  BCF    03.5
+0809:  MOVWF  20
+080A:  BCF    28.0
+080B:  CLRF   6B
+080C:  BSF    03.5
+080D:  BSF    03.6
+080E:  MOVF   09,W
+080F:  ANDLW  C0
+0810:  MOVWF  09
+0811:  BCF    03.6
+0812:  BCF    1F.4
+0813:  BCF    1F.5
+0814:  MOVLW  00
+0815:  BSF    03.6
+0816:  MOVWF  08
+0817:  BCF    03.5
+0818:  CLRF   07
+0819:  CLRF   08
+081A:  CLRF   09
+081B:  BCF    03.7
+.................... { 
+....................     set_tris_a(0x00); 
+*
+0878:  MOVLW  00
+0879:  BSF    03.5
+087A:  MOVWF  05
+....................     set_tris_b(0xFF); 
+087B:  MOVLW  FF
+087C:  MOVWF  06
+....................     set_tris_d(0x00); 
+087D:  MOVLW  00
+087E:  MOVWF  08
+....................  
+....................     output_low(SER); 
+087F:  BCF    08.0
+0880:  BCF    03.5
+0881:  BCF    08.0
+....................     output_low(SCK); 
+0882:  BSF    03.5
+0883:  BCF    08.2
+0884:  BCF    03.5
+0885:  BCF    08.2
+....................     output_high(RCK);  // mac dinh high 
+0886:  BSF    03.5
+0887:  BCF    08.4
+0888:  BCF    03.5
+0889:  BSF    08.4
+....................  
+....................     output_high(LED0); 
+088A:  BSF    03.5
+088B:  BCF    05.0
+088C:  BCF    03.5
+088D:  BSF    05.0
+....................     output_high(LED1); 
+088E:  BSF    03.5
+088F:  BCF    05.1
+0890:  BCF    03.5
+0891:  BSF    05.1
+....................     output_high(LED2); 
+0892:  BSF    03.5
+0893:  BCF    05.2
+0894:  BCF    03.5
+0895:  BSF    05.2
+....................     output_high(LED3); 
+0896:  BSF    03.5
+0897:  BCF    05.3
+0898:  BCF    03.5
+0899:  BSF    05.3
+....................     output_high(LED4); 
+089A:  BSF    03.5
+089B:  BCF    05.4
+089C:  BCF    03.5
+089D:  BSF    05.4
+....................     output_high(LED5); 
+089E:  BSF    03.5
+089F:  BCF    05.5
+08A0:  BCF    03.5
+08A1:  BSF    05.5
+....................     output_high(LED6); 
+08A2:  BSF    03.5
+08A3:  BCF    05.6
+08A4:  BCF    03.5
+08A5:  BSF    05.6
+....................     output_high(LED7); 
+08A6:  BSF    03.5
+08A7:  BCF    05.7
+08A8:  BCF    03.5
+08A9:  BSF    05.7
+....................     output_low(S_COI); 
+08AA:  BSF    03.5
+08AB:  BCF    08.6
+08AC:  BCF    03.5
+08AD:  BCF    08.6
+....................  
+....................     setup_Time_Calendar(); 
+08AE:  BCF    0A.3
+08AF:  CALL   0A9
+08B0:  BSF    0A.3
+....................     // Chờ bộ dao động ổn định 
+....................     delay_ms(20000); 
+08B1:  MOVLW  50
+08B2:  MOVWF  6C
+08B3:  MOVLW  FA
+08B4:  MOVWF  73
+08B5:  BCF    0A.3
+08B6:  CALL   0D7
+08B7:  BSF    0A.3
+08B8:  DECFSZ 6C,F
+08B9:  GOTO   0B3
+....................     setup_Time_Calendar(); 
+08BA:  BCF    0A.3
+08BB:  CALL   0A9
+08BC:  BSF    0A.3
+....................  
+....................     while (TRUE) 
+....................     { 
+....................         HienThiVal_With_Delay_number(TIME_DELAY, NUMBER); 
+08BD:  CLRF   6D
+08BE:  MOVLW  1E
+08BF:  MOVWF  6C
+08C0:  MOVLW  01
+08C1:  MOVWF  6E
+08C2:  BCF    0A.3
+08C3:  GOTO   401
+08C4:  BSF    0A.3
+....................         pos++; 
+08C5:  INCF   6B,F
+....................         if (pos > (sizeof(vmsg_pattern) - 8)) 
+08C6:  MOVF   6B,W
+08C7:  SUBLW  2A
+08C8:  BTFSS  03.0
+....................         { 
+....................             pos = 0; 
+08C9:  CLRF   6B
+....................         } 
+08CA:  GOTO   0BD
+....................     } 
+.................... } 
+08CB:  SLEEP
+
+Configuration Fuses:
+   Word  1: 2FE4   INTRC_IO NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT IESO FCMEN NOLVP NODEBUG
+   Word  2: 3FFF   BORV40 NOWRT

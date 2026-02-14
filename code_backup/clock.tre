@@ -1,0 +1,141 @@
+ÀÄclock
+   ÀÄMAIN  0/166  Ram=0
+      ÃÄ@cinit1  (Inline)  Ram=0
+      ÀÄHienThiVal_With_Delay_number  0/669  Ram=6
+         ÃÄget_data  (Inline)  Ram=1
+         ³  ÃÄ@I2C_WRITE_1  0/74  Ram=1
+         ³  ÃÄ@I2C_WRITE_1  0/74  Ram=1
+         ³  ÃÄ@I2C_WRITE_1  0/74  Ram=1
+         ³  ÃÄ@I2C_READ_1  0/69  Ram=3
+         ³  ÃÄ@I2C_READ_1  0/69  Ram=3
+         ³  ÃÄ@I2C_READ_1  0/69  Ram=3
+         ³  ÃÄ@I2C_READ_1  0/69  Ram=3
+         ³  ÃÄ@I2C_READ_1  0/69  Ram=3
+         ³  ÃÄ@I2C_READ_1  0/69  Ram=3
+         ³  ÃÄ@I2C_READ_1  0/69  Ram=3
+         ³  ÃÄ@const632  0/14  Ram=0
+         ³  ÃÄ@const632  0/14  Ram=0
+         ³  ÃÄ@const632  0/14  Ram=0
+         ³  ÃÄ@const632  0/14  Ram=0
+         ³  ÃÄ@const632  0/14  Ram=0
+         ³  ÃÄ@const632  0/14  Ram=0
+         ³  ÃÄ@const632  0/14  Ram=0
+         ³  ÃÄ@const632  0/14  Ram=0
+         ³  ÃÄ@const632  0/14  Ram=0
+         ³  ÃÄ@const632  0/14  Ram=0
+         ³  ÃÄ@const632  0/14  Ram=0
+         ³  ÃÄ@const632  0/14  Ram=0
+         ³  ÀÄ@const632  0/14  Ram=0
+         ÃÄHienThiVal_With_Delay  0/220  Ram=6
+         ³  ÀÄHienThiVal  (Inline)  Ram=16
+         ³     ÃÄ@const639  0/20  Ram=0
+         ³     ÃÄ@const639  0/20  Ram=0
+         ³     ÃÄxuat_4byte  (Inline)  Ram=13
+         ³     ³  ÃÄxuat_1byte  0/37  Ram=2
+         ³     ³  ÃÄxuat_1byte  0/37  Ram=2
+         ³     ³  ÃÄxuat_1byte  0/37  Ram=2
+         ³     ³  ÀÄxuat_1byte  0/37  Ram=2
+         ³     ÀÄ@delay_us1  (Inline)  Ram=1
+         ÀÄAdjust_Time_Calendar  (Inline)  Ram=1
+            ÃÄConvert_BCD_to_Decimal  0/85  Ram=2
+            ³  ÃÄ@MUL88  0/37  Ram=2
+            ³  ÃÄ@MUL88  0/37  Ram=2
+            ³  ÃÄ@MUL88  0/37  Ram=2
+            ³  ÃÄ@MUL88  0/37  Ram=2
+            ³  ÃÄ@MUL88  0/37  Ram=2
+            ³  ÀÄ@MUL88  0/37  Ram=2
+            ÃÄConvert_Decimal_to_BCD  0/103  Ram=1
+            ³  ÃÄ@DIV88  0/21  Ram=3
+            ³  ÃÄ@DIV88  0/21  Ram=3
+            ³  ÃÄ@DIV88  0/21  Ram=3
+            ³  ÃÄ@DIV88  0/21  Ram=3
+            ³  ÃÄ@DIV88  0/21  Ram=3
+            ³  ÃÄ@DIV88  0/21  Ram=3
+            ³  ÃÄ@DIV88  0/21  Ram=3
+            ³  ÃÄ@DIV88  0/21  Ram=3
+            ³  ÃÄ@DIV88  0/21  Ram=3
+            ³  ÃÄ@DIV88  0/21  Ram=3
+            ³  ÃÄ@DIV88  0/21  Ram=3
+            ³  ÀÄ@DIV88  0/21  Ram=3
+            ÃÄHienThiVal_With_Delay  0/220  Ram=6
+            ³  ÀÄ*
+            ÃÄ@const632  0/14  Ram=0
+            ÃÄ@const632  0/14  Ram=0
+            ÃÄHienThiVal_With_Delay  0/220  Ram=6
+            ³  ÀÄ*
+            ÃÄConvert_BCD_to_Decimal  0/85  Ram=2
+            ³  ÀÄ*
+            ÃÄ@delay_ms1  0/20  Ram=1
+            ÃÄConvert_Decimal_to_BCD  0/103  Ram=1
+            ³  ÀÄ*
+            ÃÄHienThiVal_With_Delay  0/220  Ram=6
+            ³  ÀÄ*
+            ÃÄ@const632  0/14  Ram=0
+            ÃÄ@const632  0/14  Ram=0
+            ÃÄHienThiVal_With_Delay  0/220  Ram=6
+            ³  ÀÄ*
+            ÃÄConvert_BCD_to_Decimal  0/85  Ram=2
+            ³  ÀÄ*
+            ÃÄ@delay_ms1  0/20  Ram=1
+            ÃÄConvert_Decimal_to_BCD  0/103  Ram=1
+            ³  ÀÄ*
+            ÃÄHienThiVal_With_Delay  0/220  Ram=6
+            ³  ÀÄ*
+            ÃÄ@const632  0/14  Ram=0
+            ÃÄ@const632  0/14  Ram=0
+            ÃÄHienThiVal_With_Delay  0/220  Ram=6
+            ³  ÀÄ*
+            ÃÄConvert_BCD_to_Decimal  0/85  Ram=2
+            ³  ÀÄ*
+            ÃÄ@delay_ms1  0/20  Ram=1
+            ÃÄConvert_Decimal_to_BCD  0/103  Ram=1
+            ³  ÀÄ*
+            ÃÄHienThiVal_With_Delay  0/220  Ram=6
+            ³  ÀÄ*
+            ÃÄ@const632  0/14  Ram=0
+            ÃÄ@const632  0/14  Ram=0
+            ÃÄHienThiVal_With_Delay  0/220  Ram=6
+            ³  ÀÄ*
+            ÃÄConvert_BCD_to_Decimal  0/85  Ram=2
+            ³  ÀÄ*
+            ÃÄ@delay_ms1  0/20  Ram=1
+            ÃÄConvert_Decimal_to_BCD  0/103  Ram=1
+            ³  ÀÄ*
+            ÃÄHienThiVal_With_Delay  0/220  Ram=6
+            ³  ÀÄ*
+            ÃÄ@const632  0/14  Ram=0
+            ÃÄ@const632  0/14  Ram=0
+            ÃÄHienThiVal_With_Delay  0/220  Ram=6
+            ³  ÀÄ*
+            ÃÄConvert_BCD_to_Decimal  0/85  Ram=2
+            ³  ÀÄ*
+            ÃÄ@delay_ms1  0/20  Ram=1
+            ÃÄConvert_Decimal_to_BCD  0/103  Ram=1
+            ³  ÀÄ*
+            ÃÄHienThiVal_With_Delay  0/220  Ram=6
+            ³  ÀÄ*
+            ÃÄ@const632  0/14  Ram=0
+            ÃÄHienThiVal_With_Delay  0/220  Ram=6
+            ³  ÀÄ*
+            ÃÄConvert_BCD_to_Decimal  0/85  Ram=2
+            ³  ÀÄ*
+            ÃÄ@delay_ms1  0/20  Ram=1
+            ÃÄConvert_Decimal_to_BCD  0/103  Ram=1
+            ³  ÀÄ*
+            ÃÄds1307_write  0/57  Ram=2
+            ³  ÃÄ@I2C_WRITE_1  0/74  Ram=1
+            ³  ÃÄ@I2C_WRITE_1  0/74  Ram=1
+            ³  ÀÄ@I2C_WRITE_1  0/74  Ram=1
+            ÃÄds1307_write  0/57  Ram=2
+            ³  ÀÄ*
+            ÃÄds1307_write  0/57  Ram=2
+            ³  ÀÄ*
+            ÃÄds1307_write  0/57  Ram=2
+            ³  ÀÄ*
+            ÃÄds1307_write  0/57  Ram=2
+            ³  ÀÄ*
+            ÃÄds1307_write  0/57  Ram=2
+            ³  ÀÄ*
+            ÃÄds1307_write  0/57  Ram=2
+            ³  ÀÄ*
+            ÀÄ@delay_ms1  0/20  Ram=1
