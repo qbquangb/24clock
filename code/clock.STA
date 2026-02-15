@@ -1,5 +1,5 @@
 
-ROM used:   3044/8192 (37%)
+ROM used:   3045/8192 (37%)
             3067/8192 (37%) including unused fragments
 
             0.9 Average locations per line
@@ -13,14 +13,14 @@ Stack size: 8
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  699   457  49  clock.c
+  698   456  49  clock.c
   768     0   0  C:\Program Files (x86)\PICC\Devices\16f887.h
  1351   359  38  C:\Program Files (x86)\PICC\Drivers\stdlib.h
    32     0   0  C:\Program Files (x86)\PICC\Drivers\stddef.h
   423   125  13  C:\Program Files (x86)\PICC\Drivers\string.h
    28     0   0  C:\Program Files (x86)\PICC\Drivers\ctype.h
 ----- -----
- 3301   941 Total
+ 3300   940 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
@@ -52,17 +52,17 @@ Page ROM  %  RAM   Vol Diff  Functions:
  Inline         1  5935  8.4  Adjust_Time_Calendar
 0     72   2    0   388  2.4  setup_Time_Calendar
 0     10   0    0    50  1.5  timer0_isr
-0    262   9    1  1019  7.5  MAIN
+0    263   9    1   983  6.5  MAIN
  Inline         0             @cinit1
 
 Program metrics:
     Functions               21
-    Statements              941
-    Comments                1003
-    Volume (V)              26230
-    Difficulty (D)          98.7
-    Effort to implement (E) 2588628
-    Time to implement (T)   39 hours, 57 minutes
+    Statements              940
+    Comments                1006
+    Volume (V)              26178
+    Difficulty (D)          97.7
+    Effort to implement (E) 2557562
+    Time to implement (T)   39 hours, 28 minutes
     Est Delivered Bugs (B)  6
     Cyclomatic Complexity   52
     Maintainability (MI)    24
@@ -71,7 +71,7 @@ Program metrics:
 -----------  ----  ----
 00000-00003     4  0  
 00004-0002E    43  0  
-0002F-007FF  1978  23  
+0002F-007FF  1979  22  
 00800-00FFF  1019  1029  
 01000-017FF     0  2048  
 01800-01FFF     0  2048  

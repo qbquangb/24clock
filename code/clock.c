@@ -3,7 +3,7 @@
 #fuses INTRC_IO
 #use delay(clock=8000000)   // 8 MHz internal oscillator, chu ky may 0.5us
 #use i2c(master, sda=PIN_C4, scl=PIN_C3, slow)
-#rom GETENV("EEPROM_ADDRESS") + 254 = {1, 3}
+#rom GETENV("EEPROM_ADDRESS") + 254 = {0, 3}
 
 #define SER PIN_D0 // Data input pin of 74HC595
 #define SCK PIN_D2 // Clock pin of 74HC595
@@ -670,15 +670,14 @@ void main()
     delay_ms(20000);
     setup_Time_Calendar();
 
-    // Doc gia tri time_offset tu EEPROM
+    // Doc gia tri time_offset tu EEPROM      signed int8 time_offset = 0;
     unsigned int8 offset_sign = read_eeprom(254); // 0: negative, 1: positive
     unsigned int8 offset_value = read_eeprom(255);
-    if (offset_value != 0) {
-        if (offset_sign == 0) {
-            second = second - offset_value;
-        } else {
-            second = second + offset_value;
-        }
+    // Cap nhat lai gia tri time_offset tu EEPROM vao bien time_offset
+    if (offset_sign == 0) {
+        if (offset_value > 0) time_offset = -offset_value; // offset âm, nhanh hon thuc te
+    } else {
+        time_offset = offset_value; // offset duong, cham hon thuc te
     }
 
     while (TRUE)

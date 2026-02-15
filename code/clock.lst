@@ -1,8 +1,8 @@
-CCS PCM C Compiler, Version 5.015, 5967               15-Feb-26 19:58
+CCS PCM C Compiler, Version 5.015, 5967               16-Feb-26 02:09
 
                Filename:   G:\My Drive\Duan\24clock\code\clock.lst
 
-               ROM used:   3044 words (37%)
+               ROM used:   3045 words (37%)
                            Largest free fragment is 2048
                RAM used:   102 (28%) at main() level
                            136 (37%) worst case
@@ -2265,7 +2265,7 @@ CCS PCM C Compiler, Version 5.015, 5967               15-Feb-26 19:58
 0196:  MOVWF  07
 0197:  BCF    03.5
 0198:  RETURN
-.................... #rom GETENV("EEPROM_ADDRESS") + 254 = {1, 3} 
+.................... #rom GETENV("EEPROM_ADDRESS") + 254 = {0, 3} 
 ....................  
 .................... #define SER PIN_D0 // Data input pin of 74HC595 
 .................... #define SCK PIN_D2 // Clock pin of 74HC595 
@@ -2679,7 +2679,7 @@ CCS PCM C Compiler, Version 5.015, 5967               15-Feb-26 19:58
 0BF7:  BCF    03.5
 0BF8:  BCF    0A.3
 0BF9:  BCF    0A.4
-0BFA:  GOTO   7E3 (RETURN)
+0BFA:  GOTO   7E4 (RETURN)
 .................... } 
 ....................  
 .................... // Tu dong dieu chinh thoi gian vao chu nhat hang tuan luc 00:00:30 
@@ -2790,7 +2790,7 @@ CCS PCM C Compiler, Version 5.015, 5967               15-Feb-26 19:58
 ....................     } 
 059C:  BCF    0A.3
 059D:  BCF    0A.4
-059E:  GOTO   7E5 (RETURN)
+059E:  GOTO   7E6 (RETURN)
 .................... } 
 ....................  
 .................... void xuat_1byte(unsigned int8 bytexuat) 
@@ -3231,7 +3231,7 @@ CCS PCM C Compiler, Version 5.015, 5967               15-Feb-26 19:58
 03EC:  BCF    03.5
 03ED:  BCF    0A.3
 03EE:  BCF    0A.4
-03EF:  GOTO   7DC (RETURN)
+03EF:  GOTO   7DD (RETURN)
 .................... } 
 ....................  
 .................... void bao_thoi_gian() 
@@ -3626,7 +3626,7 @@ CCS PCM C Compiler, Version 5.015, 5967               15-Feb-26 19:58
 06DF:  BCF    08.6
 06E0:  BCF    0A.3
 06E1:  BCF    0A.4
-06E2:  GOTO   7E7 (RETURN)
+06E2:  GOTO   7E8 (RETURN)
 .................... } 
 ....................  
 .................... void get_data() 
@@ -5611,7 +5611,7 @@ CCS PCM C Compiler, Version 5.015, 5967               15-Feb-26 19:58
 07A8:  BCF    03.5
 07A9:  CALL   0F2
 ....................  
-....................     // Doc gia tri time_offset tu EEPROM 
+....................     // Doc gia tri time_offset tu EEPROM      signed int8 time_offset = 0; 
 ....................     unsigned int8 offset_sign = read_eeprom(254); // 0: negative, 1: positive 
 ....................     unsigned int8 offset_value = read_eeprom(255); 
 07AA:  MOVLW  FE
@@ -5637,73 +5637,73 @@ CCS PCM C Compiler, Version 5.015, 5967               15-Feb-26 19:58
 07BE:  BSF    03.5
 07BF:  BCF    03.6
 07C0:  MOVWF  53
-....................     if (offset_value != 0) { 
-07C1:  MOVF   53,F
-07C2:  BTFSC  03.2
-07C3:  GOTO   7D0
-....................         if (offset_sign == 0) { 
-07C4:  MOVF   52,F
-07C5:  BTFSS  03.2
+....................     // Cap nhat lai gia tri time_offset tu EEPROM vao bien time_offset 
+....................     if (offset_sign == 0) { 
+07C1:  MOVF   52,F
+07C2:  BTFSS  03.2
+07C3:  GOTO   7CD
+....................         if (offset_value > 0) time_offset = -offset_value; // offset âm, nhanh hon thuc te 
+07C4:  MOVF   53,F
+07C5:  BTFSC  03.2
 07C6:  GOTO   7CC
-....................             second = second - offset_value; 
 07C7:  MOVF   53,W
-07C8:  BCF    03.5
-07C9:  SUBWF  31,F
-....................         } else { 
-07CA:  GOTO   7CF
+07C8:  SUBLW  00
+07C9:  BCF    03.5
+07CA:  MOVWF  30
 07CB:  BSF    03.5
-....................             second = second + offset_value; 
-07CC:  MOVF   53,W
-07CD:  BCF    03.5
-07CE:  ADDWF  31,F
-07CF:  BSF    03.5
-....................         } 
+....................     } else { 
+07CC:  GOTO   7D1
+....................         time_offset = offset_value; // offset duong, cham hon thuc te 
+07CD:  MOVF   53,W
+07CE:  BCF    03.5
+07CF:  MOVWF  30
+07D0:  BSF    03.5
 ....................     } 
 ....................  
 ....................     while (TRUE) 
 ....................     { 
 ....................         HienThiVal_With_Delay_number(TIME_DELAY, NUMBER); 
-07D0:  BCF    03.5
-07D1:  MOVF   39,W
-07D2:  BSF    03.5
-07D3:  MOVWF  55
-07D4:  BCF    03.5
-07D5:  MOVF   38,W
-07D6:  BSF    03.5
-07D7:  MOVWF  54
-07D8:  MOVLW  01
-07D9:  MOVWF  56
-07DA:  BCF    03.5
-07DB:  GOTO   3B5
+07D1:  BCF    03.5
+07D2:  MOVF   39,W
+07D3:  BSF    03.5
+07D4:  MOVWF  55
+07D5:  BCF    03.5
+07D6:  MOVF   38,W
+07D7:  BSF    03.5
+07D8:  MOVWF  54
+07D9:  MOVLW  01
+07DA:  MOVWF  56
+07DB:  BCF    03.5
+07DC:  GOTO   3B5
 ....................         pos++; 
-07DC:  INCF   4A,F
+07DD:  INCF   4A,F
 ....................         if (pos > (sizeof(vmsg_pattern) - 8)) 
-07DD:  MOVF   4A,W
-07DE:  SUBLW  2A
-07DF:  BTFSS  03.0
+07DE:  MOVF   4A,W
+07DF:  SUBLW  2A
+07E0:  BTFSS  03.0
 ....................         { 
 ....................             pos = 0; 
-07E0:  CLRF   4A
+07E1:  CLRF   4A
 ....................         } 
 ....................  
 ....................         mod_selection(); 
-07E1:  BSF    0A.3
-07E2:  GOTO   000
-07E3:  BCF    0A.3
+07E2:  BSF    0A.3
+07E3:  GOTO   000
+07E4:  BCF    0A.3
 ....................         Adjust_Time_Calendar_Auto(); 
-07E4:  GOTO   54A
+07E5:  GOTO   54A
 ....................         if (flag_coi == 1) bao_thoi_gian(); 
-07E5:  BTFSC  4B.0
-07E6:  GOTO   59F
-07E7:  GOTO   7D1
+07E6:  BTFSC  4B.0
+07E7:  GOTO   59F
+07E8:  GOTO   7D2
 ....................  
 ....................     } 
 .................... } 
-07E8:  SLEEP
+07E9:  SLEEP
 
 Configuration Fuses:
    Word  1: 2FE4   INTRC_IO NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT IESO FCMEN NOLVP NODEBUG
    Word  2: 3FFF   BORV40 NOWRT
 
 ROM data:
-0021FE: 0001 0003 
+0021FE: 0000 0003 
