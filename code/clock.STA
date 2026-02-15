@@ -1,66 +1,78 @@
 
-ROM used:   2104/8192 (26%)
-            2252/8192 (27%) including unused fragments
+ROM used:   3044/8192 (37%)
+            3067/8192 (37%) including unused fragments
 
-            1.6 Average locations per line
-            5.7 Average locations per statement
+            0.9 Average locations per line
+            3.2 Average locations per statement
 
-RAM used:   82/368 (22%) at main() level
-            114/368 (31%) worst case
+RAM used:   102/368 (28%) at main() level
+            136/368 (37%) worst case
 
-Stack used: 3 worst case (3 in main + 0 for interrupts)
+Stack used: 4 worst case (3 in main + 1 for interrupts)
 Stack size: 8
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  550   372 100  clock.c
+  699   457  49  clock.c
   768     0   0  C:\Program Files (x86)\PICC\Devices\16f887.h
+ 1351   359  38  C:\Program Files (x86)\PICC\Drivers\stdlib.h
+   32     0   0  C:\Program Files (x86)\PICC\Drivers\stddef.h
+  423   125  13  C:\Program Files (x86)\PICC\Drivers\string.h
+   28     0   0  C:\Program Files (x86)\PICC\Drivers\ctype.h
 ----- -----
- 1318   372 Total
+ 3301   941 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
+0     39   1    2             @MUL88
 0     20   1    1             @delay_ms1
  Inline         1             @delay_us1
-0     69   3    3             @I2C_READ_1
-0     74   4    1             @I2C_WRITE_1
-0     14   1    0             @const632
-0     20   1    0             @const640
-0     37   2    2   278  6.0  xuat_1byte
- Inline        13   508  4.1  xuat_4byte
+0     75   2    3             @I2C_READ_1
+0     74   2    1             @I2C_WRITE_1
+0     14   0    0             @const907
+0     20   1    0             @const913
+0     16   1    0    84  1.7  timer0_init
+ Inline         0    94  1.7  timer0_start
+ Inline         0    50  1.5  timer0_stop
+1   1019  33    1   758  6.3  mod_selection
+0     85   3    1   563  6.2  Adjust_Time_Calendar_Auto
+0     39   1    2   278  6.0  xuat_1byte
+ Inline         0    48  1.1  latch
+ Inline        13   445  4.2  xuat_4byte_latch
  Inline        16   483  8.8  HienThiVal
-0    222  11    6    95  3.7  HienThiVal_With_Delay
-0    875  42    6   373  7.8  HienThiVal_With_Delay_number
- Inline         1  2344  6.5  bao_thoi_gian
-0    216  10    1  1824  5.4  get_data
-0     85   4    2   475  3.8  Convert_BCD_to_Decimal
-0     37   2    2             @MUL88
-0    103   5    1   508  3.8  Convert_Decimal_to_BCD
-0     21   1    3             @DIV88
-0     57   3    2   113  2.0  ds1307_write
- Inline         1   641  4.8  function_Adj_flag_coi
- Inline         1  5683  8.4  Adjust_Time_Calendar
-0     46   2    0   388  2.4  setup_Time_Calendar
-1    204  10    1   583  5.3  MAIN
+0    266   9    6    95  3.7  HienThiVal_With_Delay
+0     59   2    6   298  7.3  HienThiVal_With_Delay_number
+0    324  11    1  2414  6.5  bao_thoi_gian
+0    235   8    1  1807  5.4  get_data
+0    133   4    2   475  3.8  Convert_BCD_to_Decimal
+0    151   5    1   508  3.8  Convert_Decimal_to_BCD
+0     23   1    3             @DIV88
+0     61   2    2   113  2.0  ds1307_write
+ Inline         1  1216 10.0  save_Time_Offset_to_EEPROM
+ Inline         1  5935  8.4  Adjust_Time_Calendar
+0     72   2    0   388  2.4  setup_Time_Calendar
+0     10   0    0    50  1.5  timer0_isr
+0    262   9    1  1019  7.5  MAIN
  Inline         0             @cinit1
 
 Program metrics:
-    Functions               14
-    Statements              372
-    Comments                165
-    Volume (V)              20881
-    Difficulty (D)          70.6
-    Effort to implement (E) 1474617
-    Time to implement (T)   22 hours, 45 minutes
-    Est Delivered Bugs (B)  4
-    Cyclomatic Complexity   40
-    Maintainability (MI)    38
+    Functions               21
+    Statements              941
+    Comments                1003
+    Volume (V)              26230
+    Difficulty (D)          98.7
+    Effort to implement (E) 2588628
+    Time to implement (T)   39 hours, 57 minutes
+    Est Delivered Bugs (B)  6
+    Cyclomatic Complexity   52
+    Maintainability (MI)    24
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00003     4  0  
-00004-007FF  1896  148  
-00800-00FFF   204  1844  
+00004-0002E    43  0  
+0002F-007FF  1978  23  
+00800-00FFF  1019  1029  
 01000-017FF     0  2048  
 01800-01FFF     0  2048  
 

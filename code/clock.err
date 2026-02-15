@@ -1,3 +1,4 @@
-      Memory usage:   ROM=26%      RAM=22% - 31%
-      0 Errors,  0 Warnings.
+>>> Warning 203 "clock.c" Line 401(1,1): Condition always TRUE
+      Memory usage:   ROM=37%      RAM=28% - 37%
+      0 Errors,  1 Warnings.
 Build Successful.
