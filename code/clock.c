@@ -3,7 +3,7 @@
 #fuses INTRC_IO
 #use delay(clock=8000000)   // 8 MHz internal oscillator, chu ky may 0.5us
 #use i2c(master, sda=PIN_C4, scl=PIN_C3, slow)
-#rom GETENV("EEPROM_ADDRESS") + 254 = {0, 3}
+#rom GETENV("EEPROM_ADDRESS") + 254 = {0, 21}
 
 #define SER PIN_D0 // Data input pin of 74HC595
 #define SCK PIN_D2 // Clock pin of 74HC595
@@ -31,6 +31,7 @@ volatile unsigned int16 ms_count = 0;   // cần volatile vì ISR cập nhật
 signed int8 time_offset = 0;
 
 unsigned int8 second, minute, hour, date, month, year, day;
+unsigned int8 minute_auto, hour_auto;
 // Ma led 7 doan common anode tu 0 den 9, common anode = 0 la sang
 const unsigned int8 MaLed7Doan[10] = {0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8, 0x80, 0x90};
 
@@ -116,13 +117,13 @@ void mod_selection() {
             timer0_start();
             while (input(MOD) == 0);
             unsigned int16 elapsed_time = timer0_stop();
-            if (elapsed_time >= 0 && elapsed_time <= 5000) { // 2s, hieu chinh thoi gian va lich
+            if (elapsed_time >= 0 && elapsed_time <= 3000) { // 2s, hieu chinh thoi gian va lich
                 Adjust_Time_Calendar();
             }
-            if (elapsed_time > 5000 && elapsed_time <= 10000) { // 7s, hieu chinh gia tri time_offset
+            if (elapsed_time > 3000 && elapsed_time <= 5000) { // 4s, hieu chinh gia tri time_offset
                 save_Time_Offset_to_EEPROM();
             }
-            if (elapsed_time > 10000) { // 12s, dieu chinh flag_coi, dao nguoc gia tri flag_coi
+            if (elapsed_time > 5000) { // 6s, dieu chinh flag_coi, dao nguoc gia tri flag_coi
                 flag_coi = ~flag_coi;
                 if (flag_coi == 1) {
                     output_high(S_COI); delay_ms(500); output_low(S_COI); delay_ms(500); output_high(S_COI); delay_ms(500); output_low(S_COI);
@@ -141,7 +142,7 @@ void mod_selection() {
 void Adjust_Time_Calendar_Auto() {
     get_data();
     Convert_BCD_to_Decimal();
-    if ((second == 27 || second == 28 || second == 29 || second == 30 || second == 31) && minute == 0 && hour == 0 && day == 1) {
+    if ((second == 27 || second == 28 || second == 29 || second == 30 || second == 31) && minute == minute_auto && hour == hour_auto) {
         // Doc gia tri time_offset tu EEPROM
         offset_sign = read_eeprom(254); // 0: negative, 1: positive
         offset_value = read_eeprom(255);
@@ -396,12 +397,12 @@ void ds1307_write(unsigned int8 address, unsigned int8 data)
 void save_Time_Offset_to_EEPROM() {
 
     TIME_DELAY = 15;
+    time_offset = -30;
     offset_sign = (time_offset < 0) ? 0 : 1; // 0: negative, 1: positive
     offset_value = (unsigned int8)abs(time_offset);
     while (1) {
         if (!input(INC)) time_offset++;
-        // if (time_offset >= 30) time_offset = -30;
-        if (time_offset >= 20) time_offset = -20;
+        if (time_offset >= 30) time_offset = -30;
         offset_sign = (time_offset < 0) ? 0 : 1; // 0: negative, 1: positive
         offset_value = (unsigned int8)abs(time_offset);
         ValHienThi[13] = 0xFF;
@@ -593,6 +594,9 @@ void Adjust_Time_Calendar()
             break;
         }
     }
+
+    minute_auto = minute;
+    hour_auto = hour;
 
     Convert_Decimal_to_BCD();
     // Write time and calendar to DS1307
