@@ -20,6 +20,7 @@
 #define LED7 PIN_A7
 #define S_COI PIN_D6
 
+/* Thay thế các khai báo cũ bằng các khai báo sau */
 volatile unsigned int8 y8 = 0xFF;         // pattern hiển thị 8 LED (bit0 -> LED0)
 volatile unsigned int8 run_mask8 = 0x00;
 volatile unsigned int8 save_mask8 = 0xFE; // bắt đầu giống chương tham khảo
@@ -82,11 +83,7 @@ void timer0_isr(void);
 void save_Time_Offset_to_EEPROM();
 void mod_selection();
 void timer1_init(void);
-void output8led(unsigned int8 _pattern);
-void timer1_isr(void);
 
-/* Xuất pattern 8 bit ra LED0..LED7 (bit0 -> LED0, bit7 -> LED7)
-   Lưu ý: nếu LED của bạn active-low thì đổi điều kiện ((_pattern & (1<<i)) ? 1 : 0) -> invert */
 void output8led(unsigned int8 _pattern)
 {
     output_bit(LED0, (_pattern & (1 << 0)) ? 1 : 0);
@@ -174,17 +171,7 @@ void mod_selection() {
             if (elapsed_time > 5000 && elapsed_time <= 7000) { // 6s, dieu chinh led
                 flag_led = ~flag_led;
                 if (flag_led == 1) enable_interrupts(INT_TIMER1);
-                else {
-                    disable_interrupts(INT_TIMER1);
-                    output_high(LED0);
-                    output_low(LED1);
-                    output_low(LED2);
-                    output_low(LED3);
-                    output_low(LED4);
-                    output_low(LED5);
-                    output_low(LED6);
-                    output_high(LED7);
-                }
+                else disable_interrupts(INT_TIMER1);
             }
             if (elapsed_time > 7000) { // 8s, dieu chinh flag_coi, dao nguoc gia tri flag_coi
                 flag_coi = ~flag_coi;
@@ -658,13 +645,8 @@ void Adjust_Time_Calendar()
         }
     }
 
-    if (minute_auto == 0) {
-        minute_auto = 59;
-        hour_auto = (hour_auto == 0) ? 23 : hour_auto - 1;
-    } else {
-        minute_auto = minute_auto - 1;
-        hour_auto = hour_auto;
-    }
+    minute_auto = minute;
+    hour_auto = hour;
 
     Convert_Decimal_to_BCD();
     // Write time and calendar to DS1307
@@ -816,9 +798,9 @@ void main()
     timer1_init();
 
     setup_Time_Calendar();
-    // Chờ bộ dao động ổn định
-    delay_ms(20000);
-    setup_Time_Calendar();
+    // // Chờ bộ dao động ổn định
+    // delay_ms(20000);
+    // setup_Time_Calendar();
 
     // Doc gia tri time_offset tu EEPROM      signed int8 time_offset = 0;
     unsigned int8 offset_sign = read_eeprom(254); // 0: negative, 1: positive

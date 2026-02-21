@@ -1,9 +1,9 @@
-ÀÄclock
-   ÃÄMAIN  0/279  Ram=1
+ÀÄtest
+   ÃÄMAIN  0/267  Ram=1
    ³  ÃÄ@cinit1  (Inline)  Ram=0
    ³  ÃÄtimer0_init  0/16  Ram=0
    ³  ÃÄtimer1_init  0/15  Ram=0
-   ³  ÃÄsetup_Time_Calendar  0/72  Ram=0
+   ³  ÃÄsetup_Time_Calendar  0/74  Ram=0
    ³  ³  ÃÄds1307_write  0/61  Ram=2
    ³  ³  ³  ÃÄ@I2C_WRITE_1  0/74  Ram=1
    ³  ³  ³  ÃÄ@I2C_WRITE_1  0/74  Ram=1
@@ -20,9 +20,6 @@
    ³  ³  ³  ÀÄ*
    ³  ³  ÀÄds1307_write  0/61  Ram=2
    ³  ³     ÀÄ*
-   ³  ÃÄ@delay_ms1  0/20  Ram=1
-   ³  ÃÄsetup_Time_Calendar  0/72  Ram=0
-   ³  ³  ÀÄ*
    ³  ÃÄHienThiVal_With_Delay_number  0/59  Ram=6
    ³  ³  ÃÄget_data  0/235  Ram=1
    ³  ³  ³  ÃÄ@I2C_WRITE_1  0/74  Ram=1
@@ -59,7 +56,7 @@
    ³  ³        ³  ÃÄxuat_1byte  0/39  Ram=2
    ³  ³        ³  ÀÄlatch  (Inline)  Ram=0
    ³  ³        ÀÄ@delay_us1  (Inline)  Ram=1
-   ³  ÃÄmod_selection  1/1109  Ram=1
+   ³  ÃÄmod_selection  1/1065  Ram=1
    ³  ³  ÃÄ@delay_ms1  0/20  Ram=1
    ³  ³  ÃÄtimer0_start  (Inline)  Ram=0
    ³  ³  ÃÄtimer0_stop  (Inline)  Ram=1

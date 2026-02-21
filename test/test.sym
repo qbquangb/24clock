@@ -50,9 +50,9 @@
 0A0-0D1 vmsg_pattern
 0D2     MAIN.offset_sign
 0D3     MAIN.offset_value
-0D4     bao_thoi_gian.i
-0D4-0D5 HienThiVal_With_Delay_number.delay_time
 0D4-0D5 mod_selection.elapsed_time
+0D4-0D5 HienThiVal_With_Delay_number.delay_time
+0D4     bao_thoi_gian.i
 0D4     Adjust_Time_Calendar_Auto.@SCRATCH1
 0D4     MAIN.@SCRATCH1
 0D5     bao_thoi_gian.i
@@ -65,16 +65,16 @@
 0D6     Convert_Decimal_to_BCD.@SCRATCH1
 0D6     save_Time_Offset_to_EEPROM.@SCRATCH1
 0D6     Adjust_Time_Calendar.@SCRATCH1
-0D7     ds1307_write.data
-0D7     @delay_ms1.P1
-0D7     @DIV88.P2
+0D7     @DIV88.P1
 0D7     HienThiVal_With_Delay_number.i
+0D7     @delay_ms1.P1
+0D7     ds1307_write.data
 0D7     Convert_BCD_to_Decimal.@SCRATCH2
-0D8     @DIV88.P1
 0D8-0D9 HienThiVal_With_Delay.val
-0D8     @I2C_WRITE_1.P1
-0D8     @I2C_READ_1.P2
-0D8     @MUL88.P3
+0D8     @DIV88.P1
+0D8     @I2C_WRITE_1.P2
+0D8     @I2C_READ_1.P3
+0D8     @MUL88.P4
 0D8     HienThiVal_With_Delay_number.@SCRATCH1
 0D8     get_data.@SCRATCH1
 0D9     @MUL88.P1
@@ -163,48 +163,48 @@ ROM Allocation:
 0001A2  @I2C_WRITE_1
 0001EC  ds1307_write
 000229  setup_Time_Calendar
-000271  @delay_ms1
-000285  @I2C_READ_1
-0002D0  get_data
-0003BB  xuat_1byte
-0003E2  HienThiVal_With_Delay
-0003FE  HienThiVal
-00046C  xuat_4byte_latch
-0004C5  latch
-0004D5  @delay_us1
-0004EC  HienThiVal_With_Delay_number
-000527  @MUL88
-00054E  Convert_BCD_to_Decimal
-0005D3  @DIV88
-0005EA  Convert_Decimal_to_BCD
-000681  Adjust_Time_Calendar_Auto
-0006D6  @cinit1
-0006D6  MAIN
-000704  @cinit2
+000273  @I2C_READ_1
+0002BE  get_data
+0003A9  xuat_1byte
+0003D0  HienThiVal_With_Delay
+0003EC  HienThiVal
+00045A  xuat_4byte_latch
+0004B3  latch
+0004C3  @delay_us1
+0004DA  HienThiVal_With_Delay_number
+000515  @delay_ms1
+000529  @MUL88
+000550  Convert_BCD_to_Decimal
+0005D5  @DIV88
+0005EC  Convert_Decimal_to_BCD
+000683  Adjust_Time_Calendar_Auto
+0006D8  @cinit1
+0006D8  MAIN
+000706  @cinit2
 000800  mod_selection
 000815  timer0_start
 000825  timer0_stop
 000842  Adjust_Time_Calendar
-000AF8  save_Time_Offset_to_EEPROM
-000C55  bao_thoi_gian
+000AEC  save_Time_Offset_to_EEPROM
+000C29  bao_thoi_gian
 0136  StrtoulGO
 0136  StrtolGO
 
 Project Directory:
-    G:\My Drive\Duan\24clock\code\
+    G:\My Drive\Duan\24clock\test\
 
 Project Files:
-    clock.c                                                 [21-Feb-26 10:19  CRC=98869600]
+    test.c                                                  [21-Feb-26 09:28  CRC=A7F57B44]
     C:\Program Files (x86)\PICC\Devices\16f887.h            [12-Nov-13 14:35  CRC=6CB1A611]
     C:\Program Files (x86)\PICC\Drivers\stdlib.h            [08-Jun-11 14:39  CRC=0B6669CF]
     C:\Program Files (x86)\PICC\Drivers\stddef.h            [16-Jul-10 09:27  CRC=897CEC6C]
     C:\Program Files (x86)\PICC\Drivers\string.h            [14-Jul-11 10:13  CRC=23EDEC8F]
     C:\Program Files (x86)\PICC\Drivers\ctype.h             [03-Jan-08 13:55  CRC=2D1F019F]
 
-Source signature=18478219
+Source signature=27B6675D
 
 Units:
-    clock (main)
+    test (main)
 
 Compiler Settings:
     Processor:      PIC16F887
@@ -215,13 +215,13 @@ Compiler Settings:
     Float,Double:   32,32
 
 Output Files:
-    XREF file:   clock.xsym
-    Errors:      clock.err
-    Ext Symbols: clock.esym
-    INHX8:       clock.hex
-    Symbols:     clock.sym
-    List:        clock.lst
-    Debug/COFF:  clock.cof
-    Project:     clock.ccspjt
-    Call Tree:   clock.tre
-    Statistics:  clock.STA
+    XREF file:   test.xsym
+    Errors:      test.err
+    Ext Symbols: test.esym
+    INHX8:       test.hex
+    Symbols:     test.sym
+    List:        test.lst
+    Debug/COFF:  test.cof
+    Project:     test.ccspjt
+    Call Tree:   test.tre
+    Statistics:  test.STA
