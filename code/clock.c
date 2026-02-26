@@ -3,7 +3,7 @@
 #fuses INTRC_IO
 #use delay(clock=8000000)   // 8 MHz internal oscillator, chu ky may 0.5us
 #use i2c(master, sda=PIN_C4, scl=PIN_C3, slow)
-#rom GETENV("EEPROM_ADDRESS") + 254 = {0, 21}
+#rom GETENV("EEPROM_ADDRESS") + 254 = {0, 21} // giá trị cài đặt [-27, 30], 0 âm 1 dươmg
 
 #define SER PIN_D0 // Data input pin of 74HC595
 #define SCK PIN_D2 // Clock pin of 74HC595
@@ -40,7 +40,7 @@ volatile unsigned int8 ms_count2 = 0;   // cần volatile vì ISR cập nhật
 signed int8 time_offset = 0;
 
 unsigned int8 second, minute, hour, date, month, year, day;
-unsigned int8 minute_auto, hour_auto;
+unsigned int8 minute_auto = 12, hour_auto = 12;
 // Ma led 7 doan common anode tu 0 den 9, common anode = 0 la sang
 const unsigned int8 MaLed7Doan[10] = {0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8, 0x80, 0x90};
 
@@ -49,6 +49,7 @@ unsigned int16 TIME_DELAY = 30; // so lan chay ham HienThiVal
 const unsigned int8 NUMBER = 1; // thoi gian hien thi = NUMBER * 0.24 seconds = 0.24 seconds
 const unsigned int8 DichCot[16] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80};
 unsigned int8 ValHienThi[16] = {0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
+const unsigned int8 ConstValHienThi[16] = {0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
 unsigned int8 vmsg_pattern[] = {0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, // ex:________
                                 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, // Placeholder for second/minute/hour, ex:04.02.2026__
                                 0x87, 0x8b, 0xe3, 0xff, 0xc6, 0xc8, 0xff, 0xff, // ex:thu_04__
@@ -56,10 +57,12 @@ unsigned int8 vmsg_pattern[] = {0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 
                                 0x87, 0x8b, 0xe3, 0xa3, 0xab, 0x90, // ex:thuong
                                 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff}; // ex:________
                                                                                  // ________04.02.2026__thu_04__tran_dinh_thuong________
+
 unsigned int8 pos = 0;
 int1 flag_coi = 0;
 int1 flag_led = 0;
-unsigned int8 offset_sign = 1;
+int1 flag_save = 0;
+unsigned int8 offset_sign = 0;
 unsigned int8 offset_value = 0;
 void xuat_1byte(unsigned int8 bytexuat);
 void xuat_4byte_latch(unsigned int32 xuat4byte);
@@ -84,6 +87,14 @@ void mod_selection();
 void timer1_init(void);
 void output8led(unsigned int8 _pattern);
 void timer1_isr(void);
+void XoaHienThi();
+signed int8 ConvertUnsignedToSigned(unsigned int8 value);
+
+void XoaHienThi() {
+    for (unsigned int8 i = 0; i < 16; i++) {
+        ValHienThi[i] = ConstValHienThi[i];
+    }
+}
 
 /* Xuất pattern 8 bit ra LED0..LED7 (bit0 -> LED0, bit7 -> LED7)
    Lưu ý: nếu LED của bạn active-low thì đổi điều kiện ((_pattern & (1<<i)) ? 1 : 0) -> invert */
@@ -459,13 +470,13 @@ void ds1307_write(unsigned int8 address, unsigned int8 data)
 // Nếu thời gian đúng với thực tế thì giá trị là 0
 void save_Time_Offset_to_EEPROM() {
 
+    XoaHienThi();
     TIME_DELAY = 15;
-    time_offset = -30;
     offset_sign = (time_offset < 0) ? 0 : 1; // 0: negative, 1: positive
     offset_value = (unsigned int8)abs(time_offset);
     while (1) {
         if (!input(INC)) time_offset++;
-        if (time_offset >= 30) time_offset = -30;
+        if (time_offset >= 30) time_offset = -27;
         offset_sign = (time_offset < 0) ? 0 : 1; // 0: negative, 1: positive
         offset_value = (unsigned int8)abs(time_offset);
         ValHienThi[13] = 0xFF;
@@ -501,6 +512,7 @@ void save_Time_Offset_to_EEPROM() {
 
 void Adjust_Time_Calendar()
 {
+    XoaHienThi();
     TIME_DELAY = 15; // reduce delay time for faster adjustment, thoi gian hien thi se la: 0.12 seconds
     Convert_BCD_to_Decimal();
     // Set seconds to 00
@@ -658,12 +670,42 @@ void Adjust_Time_Calendar()
         }
     }
 
-    if (minute_auto == 0) {
+    // Lựa chọn lưu cài đặt hay không
+    XoaHienThi();
+    while (TRUE) {
+        if (!input(INC)) flag_save = ~flag_save;
+        ValHienThi[11] = 0xFF;
+        ValHienThi[10] = 0xff;
+        ValHienThi[9] = 0xff;
+        ValHienThi[8] = 0xff;
+        ValHienThi[0] = 0xff;
+        HienThiVal_With_Delay(ValHienThi, TIME_DELAY);
+        ValHienThi[11] = 0x92;
+        ValHienThi[10] = 0x88;
+        ValHienThi[9] = 0xc1;
+        ValHienThi[8] = 0x86;
+        if (flag_save) ValHienThi[0] = 0x91;
+        else ValHienThi[0] = 0xc8;
+        HienThiVal_With_Delay(ValHienThi, TIME_DELAY);
+        if (!input(MOD))
+        {
+            delay_ms(20);
+            if (!input(MOD))
+            {
+                while (input(MOD) == 0) {}
+            }
+            break;
+        }
+    }
+
+    if (!flag_save) return;
+
+    if (minute == 0) {
         minute_auto = 59;
-        hour_auto = (hour_auto == 0) ? 23 : hour_auto - 1;
+        hour_auto = (hour == 0) ? 23 : hour - 1;
     } else {
-        minute_auto = minute_auto - 1;
-        hour_auto = hour_auto;
+        minute_auto = minute - 1;
+        hour_auto = hour;
     }
 
     Convert_Decimal_to_BCD();
@@ -721,9 +763,9 @@ void timer1_isr(void)
     /* reload timer để có ~1 ms tick */
     set_timer1(TMR1_PRELOAD);
 
-    /* đếm ms; mỗi 50 ms làm 1 bước */
+    /* đếm ms; mỗi 200 ms làm 1 bước */
     ms_count2++;
-    if (ms_count2 < 50) {
+    if (ms_count2 < 200) {
         clear_interrupt(INT_TIMER1);
         return;
     }
@@ -792,6 +834,11 @@ void timer1_isr(void)
     clear_interrupt(INT_TIMER1);
 }
 
+signed int8 ConvertUnsignedToSigned(unsigned int8 value) {
+    signed int8 res = (signed int8)value;
+    return res;
+}
+
 void main()
 {
     set_tris_a(0x00);
@@ -824,10 +871,11 @@ void main()
     unsigned int8 offset_sign = read_eeprom(254); // 0: negative, 1: positive
     unsigned int8 offset_value = read_eeprom(255);
     // Cap nhat lai gia tri time_offset tu EEPROM vao bien time_offset
-    if (offset_sign == 0) {
-        if (offset_value > 0) time_offset = -offset_value; // offset âm, nhanh hon thuc te
+    if (offset_sign == 0) { // offset âm, nhanh hon thuc te
+        time_offset = ConvertUnsignedToSigned(offset_value);
+        time_offset = 0 - time_offset;
     } else {
-        time_offset = offset_value; // offset duong, cham hon thuc te
+        time_offset = ConvertUnsignedToSigned(offset_value); // offset duong, cham hon thuc te
     }
 
     enable_interrupts(GLOBAL);

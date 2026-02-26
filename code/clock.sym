@@ -1,7 +1,7 @@
 004-005 @WRITE_PROGRAM_MEMORY8.P1
 004-005 @READ_PROGRAM_MEMORY8.P2
-015     CCP_1
 015     CCP_1_LOW
+015     CCP_1
 016     CCP_1_HIGH
 01B     CCP_2
 01B     CCP_2_LOW
@@ -24,6 +24,7 @@
 033.0   cascade_started8
 033.1   flag_coi
 033.2   flag_led
+033.3   flag_save
 034-035 ms_count
 036     ms_count2
 037     time_offset
@@ -56,6 +57,7 @@
 0D4     Adjust_Time_Calendar_Auto.@SCRATCH1
 0D4     MAIN.@SCRATCH1
 0D5     bao_thoi_gian.i
+0D6     XoaHienThi.i
 0D6     HienThiVal_With_Delay_number.NUMBER
 0D6     ds1307_write.address
 0D6     timer0_stop.@SCRATCH1
@@ -67,14 +69,16 @@
 0D6     Adjust_Time_Calendar.@SCRATCH1
 0D7     ds1307_write.data
 0D7     @delay_ms1.P1
-0D7     @DIV88.P2
 0D7     HienThiVal_With_Delay_number.i
+0D7     @DIV88.P1
+0D7     XoaHienThi.@SCRATCH1
 0D7     Convert_BCD_to_Decimal.@SCRATCH2
-0D8     @DIV88.P1
+0D8     @MUL88.P1
 0D8-0D9 HienThiVal_With_Delay.val
-0D8     @I2C_WRITE_1.P1
-0D8     @I2C_READ_1.P2
-0D8     @MUL88.P3
+0D8     @DIV88.P1
+0D8     @I2C_WRITE_1.P2
+0D8     @I2C_READ_1.P3
+0D8     XoaHienThi.@SCRATCH2
 0D8     HienThiVal_With_Delay_number.@SCRATCH1
 0D8     get_data.@SCRATCH1
 0D9     @MUL88.P1
@@ -155,38 +159,41 @@ ROM Allocation:
 00003C  MaLed7Doan.data
 000046  DichCot.call
 00004A  DichCot.data
-00005A  timer0_isr
-000064  output8led
-0000F5  timer1_isr
-000183  timer0_init
-000193  timer1_init
-0001A2  @I2C_WRITE_1
-0001EC  ds1307_write
-000229  setup_Time_Calendar
-000271  @delay_ms1
-000285  @I2C_READ_1
-0002D0  get_data
-0003BB  xuat_1byte
-0003E2  HienThiVal_With_Delay
-0003FE  HienThiVal
-00046C  xuat_4byte_latch
-0004C5  latch
-0004D5  @delay_us1
-0004EC  HienThiVal_With_Delay_number
-000527  @MUL88
-00054E  Convert_BCD_to_Decimal
-0005D3  @DIV88
-0005EA  Convert_Decimal_to_BCD
-000681  Adjust_Time_Calendar_Auto
-0006D6  @cinit1
-0006D6  MAIN
-000704  @cinit2
+00005A  ConstValHienThi.call
+00005E  ConstValHienThi.data
+00006E  timer0_isr
+000078  output8led
+000109  timer1_isr
+000197  timer0_init
+0001A7  timer1_init
+0001B6  @I2C_WRITE_1
+000200  ds1307_write
+00023D  setup_Time_Calendar
+000285  @delay_ms1
+000299  @I2C_READ_1
+0002E4  get_data
+0003CF  xuat_1byte
+0003F6  HienThiVal_With_Delay
+000412  HienThiVal
+000480  xuat_4byte_latch
+0004D9  latch
+0004E9  @delay_us1
+000500  HienThiVal_With_Delay_number
+00053B  XoaHienThi
+00054F  @MUL88
+000576  Convert_BCD_to_Decimal
+0005FB  @DIV88
+000612  Convert_Decimal_to_BCD
+0006A9  Adjust_Time_Calendar_Auto
 000800  mod_selection
 000815  timer0_start
 000825  timer0_stop
 000842  Adjust_Time_Calendar
-000AF8  save_Time_Offset_to_EEPROM
-000C55  bao_thoi_gian
+000B57  save_Time_Offset_to_EEPROM
+000CB5  bao_thoi_gian
+000E0B  @cinit1
+000E0B  MAIN
+000E3E  @cinit2
 0136  StrtoulGO
 0136  StrtolGO
 
@@ -194,14 +201,14 @@ Project Directory:
     G:\My Drive\Duan\24clock\code\
 
 Project Files:
-    clock.c                                                 [21-Feb-26 10:19  CRC=98869600]
+    clock.c                                                 [26-Feb-26 05:59  CRC=79CDB202]
     C:\Program Files (x86)\PICC\Devices\16f887.h            [12-Nov-13 14:35  CRC=6CB1A611]
     C:\Program Files (x86)\PICC\Drivers\stdlib.h            [08-Jun-11 14:39  CRC=0B6669CF]
     C:\Program Files (x86)\PICC\Drivers\stddef.h            [16-Jul-10 09:27  CRC=897CEC6C]
     C:\Program Files (x86)\PICC\Drivers\string.h            [14-Jul-11 10:13  CRC=23EDEC8F]
     C:\Program Files (x86)\PICC\Drivers\ctype.h             [03-Jan-08 13:55  CRC=2D1F019F]
 
-Source signature=18478219
+Source signature=F98E9E1B
 
 Units:
     clock (main)

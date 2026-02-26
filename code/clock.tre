@@ -1,5 +1,5 @@
 ÀÄclock
-   ÃÄMAIN  0/279  Ram=1
+   ÃÄMAIN  1/288  Ram=1
    ³  ÃÄ@cinit1  (Inline)  Ram=0
    ³  ÃÄtimer0_init  0/16  Ram=0
    ³  ÃÄtimer1_init  0/15  Ram=0
@@ -59,11 +59,13 @@
    ³  ³        ³  ÃÄxuat_1byte  0/39  Ram=2
    ³  ³        ³  ÀÄlatch  (Inline)  Ram=0
    ³  ³        ÀÄ@delay_us1  (Inline)  Ram=1
-   ³  ÃÄmod_selection  1/1109  Ram=1
+   ³  ÃÄmod_selection  1/1205  Ram=1
    ³  ³  ÃÄ@delay_ms1  0/20  Ram=1
    ³  ³  ÃÄtimer0_start  (Inline)  Ram=0
    ³  ³  ÃÄtimer0_stop  (Inline)  Ram=1
    ³  ³  ÃÄAdjust_Time_Calendar  (Inline)  Ram=1
+   ³  ³  ³  ÃÄXoaHienThi  0/20  Ram=2
+   ³  ³  ³  ³  ÀÄ@const926  0/20  Ram=0
    ³  ³  ³  ÃÄConvert_BCD_to_Decimal  0/133  Ram=2
    ³  ³  ³  ³  ÃÄ@MUL88  0/39  Ram=2
    ³  ³  ³  ³  ÃÄ@MUL88  0/39  Ram=2
@@ -147,6 +149,13 @@
    ³  ³  ³  ÃÄConvert_BCD_to_Decimal  0/133  Ram=2
    ³  ³  ³  ³  ÀÄ*
    ³  ³  ³  ÃÄ@delay_ms1  0/20  Ram=1
+   ³  ³  ³  ÃÄXoaHienThi  0/20  Ram=2
+   ³  ³  ³  ³  ÀÄ*
+   ³  ³  ³  ÃÄHienThiVal_With_Delay  0/266  Ram=6
+   ³  ³  ³  ³  ÀÄ*
+   ³  ³  ³  ÃÄHienThiVal_With_Delay  0/266  Ram=6
+   ³  ³  ³  ³  ÀÄ*
+   ³  ³  ³  ÃÄ@delay_ms1  0/20  Ram=1
    ³  ³  ³  ÃÄConvert_Decimal_to_BCD  0/151  Ram=1
    ³  ³  ³  ³  ÀÄ*
    ³  ³  ³  ÃÄds1307_write  0/61  Ram=2
@@ -165,6 +174,8 @@
    ³  ³  ³  ³  ÀÄ*
    ³  ³  ³  ÀÄ@delay_ms1  0/20  Ram=1
    ³  ³  ÃÄsave_Time_Offset_to_EEPROM  (Inline)  Ram=1
+   ³  ³  ³  ÃÄXoaHienThi  0/20  Ram=2
+   ³  ³  ³  ³  ÀÄ*
    ³  ³  ³  ÃÄHienThiVal_With_Delay  0/266  Ram=6
    ³  ³  ³  ³  ÀÄ*
    ³  ³  ³  ÃÄ@DIV88  0/23  Ram=3

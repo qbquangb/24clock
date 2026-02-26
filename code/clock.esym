@@ -1,7 +1,7 @@
-D G "__PCM__" 0 851 ""5.015""
-D G "__DEVICE__" 0 851 "887"
-D G "__DATE__" 0 851 ""21-Feb-26""
-D G "__TIME__" 0 851 ""10:19:47"" "Standard Header file for the PIC16F887 device ////////////////"
+D G "__PCM__" 0 892 ""5.015""
+D G "__DEVICE__" 0 892 "887"
+D G "__DATE__" 0 892 ""26-Feb-26""
+D G "__TIME__" 0 892 ""05:59:06"" "Standard Header file for the PIC16F887 device ////////////////"
 c L "set_tris_a" 1 3 6 "FUNCTION"
 v L "value" 1 39 "int8" `54 
 f B "set_tris_a" 1 39 "void(int8 value)" `53 
@@ -1287,177 +1287,183 @@ V G "month" 0 42 "int8" `911
 V G "year" 0 42 "int8" `912 
 V G "day" 0 42 "int8" `913 
 V G "minute_auto" 0 43 "int8" `914 
-V G "hour_auto" 0 43 "int8" `915  "Ma led 7 doan common anode tu 0 den 9, common anode = 0 la sang"
+V G "hour_auto" 0 43 "int8" `915 
 V G "MaLed7Doan" 0 45 "[10]" `916 
 V G "TIME_DELAY" 0 47 "int16" `919 
 V G "NUMBER" 0 49 "int8" `920 
 V G "DichCot" 0 50 "[16]" `922 
 V G "ValHienThi" 0 51 "int8[16]" `925 
-V G "vmsg_pattern" 0 52 "int8[1]" `926 
-V G "pos" 0 59 "int8" `927 
-V G "flag_coi" 0 60 "int1" `928 
-V G "flag_led" 0 61 "int1" `929 
-V G "offset_sign" 0 62 "int8" `930 
-V G "offset_value" 0 63 "int8" `931 
-V L "bytexuat" 0 64 "int8" `933 
-f G "xuat_1byte" 0 64 "void(int8 bytexuat)" `932 
-V L "xuat4byte" 0 65 "int32" `935 
-f G "xuat_4byte_latch" 0 65 "void(int32 xuat4byte)" `934 
-V L "val" 0 66 "*" `937 
-f G "HienThiVal" 0 66 "void(* val)" `936 
-V L "val" 0 67 "*" `940 
-V L "delay_time" 0 67 "int16" `941 
-f G "HienThiVal_With_Delay" 0 67 "void(* val,int16 delay_time)" `939 
-V L "delay_time" 0 68 "int16" `944 
-V L "NUMBER" 0 68 "int8" `945 
-f G "HienThiVal_With_Delay_number" 0 68 "void(int16 delay_time,int8 NUMBER)" `943 
-f G "get_data" 0 69 "void()" `946 
-f G "Convert_BCD_to_Decimal" 0 70 "void()" `947 
-f G "Convert_Decimal_to_BCD" 0 71 "void()" `948 
-V L "address" 0 72 "int8" `950 
-V L "data" 0 72 "int8" `951 
-f G "ds1307_write" 0 72 "void(int8 address,int8 data)" `949 
-f G "Adjust_Time_Calendar" 0 73 "void()" `952 
-f G "Adjust_Time_Calendar_Auto" 0 74 "void()" `953 
-f G "bao_thoi_gian" 0 75 "void()" `954 
-f G "setup_Time_Calendar" 0 76 "void()" `955 
-f G "latch" 0 77 "void()" `956 
-f G "timer0_init" 0 78 "void()" `957 
-f G "timer0_start" 0 79 "void()" `958 
-f G "timer0_stop" 0 80 "int16()" `959 
-f G "timer0_isr" 0 81 "void()" `960 
-f G "save_Time_Offset_to_EEPROM" 0 82 "void()" `961 
-f G "mod_selection" 0 83 "void()" `962 
-f G "timer1_init" 0 84 "void()" `963 
-V L "_pattern" 0 85 "int8" `965 
-f G "output8led" 0 85 "void(int8 _pattern)" `964 
-f G "timer1_isr" 0 86 "void()" `966  "Xuất pattern 8 bit ra LED0..LED7 (bit0 -> LED0, bit7 -> LED7)"
-C L "timer1_isr" 0 23 1 "FUNCTION"
-V L "_pattern" 0 90 "int8" `968 
-F G "output8led" 0 91 "void(int8 _pattern)" `964 
-F G "timer0_init" 0 102 "void()" `957  "Disable interrupts toàn cục tạm khi cấu hình"
-C L "timer0_init" 0 23 2 "FUNCTION"
-C L "timer0_init" 0 23 1 "FUNCTION"
-C L "timer0_init" 0 23 1 "FUNCTION"
-C L "timer0_init" 0 23 3 "FUNCTION"
-F G "timer1_init" 0 121 "void()" `963  "Disable interrupts toàn cục tạm khi cấu hình"
-C L "timer1_init" 0 23 2 "FUNCTION"
-C L "timer1_init" 0 23 1 "FUNCTION"
-C L "timer1_init" 0 23 1 "FUNCTION"
-C L "timer1_init" 0 23 3 "FUNCTION"
-C L "timer0_start" 0 23 1 "FUNCTION"
-F G "timer0_start" 0 142 "void()" `958 
-C L "timer0_start" 0 23 1 "FUNCTION"
-F G "timer0_stop" 0 154 "int16()" `959 
-F G "mod_selection" 0 161 "void()" `962 
-C L "mod_selection" 0 23 1 "FUNCTION"
-V L "elapsed_time" 0 167 "int16" `967 
-C L "mod_selection" 0 23 1 "FUNCTION"
-C L "mod_selection" 0 23 1 "FUNCTION"
-C L "mod_selection" 0 23 1 "FUNCTION"
-C L "mod_selection" 0 23 1 "FUNCTION"
-C L "Adjust_Time_Calendar_Auto" 0 23 4 "FUNCTION"
-F G "Adjust_Time_Calendar_Auto" 0 205 "void()" `953 
-C L "Adjust_Time_Calendar_Auto" 0 23 1 "FUNCTION"
-C L "Adjust_Time_Calendar_Auto" 0 23 1 "FUNCTION"
-C L "Adjust_Time_Calendar_Auto" 0 23 1 "FUNCTION"
-C L "Adjust_Time_Calendar_Auto" 0 23 1 "FUNCTION"
-V L "bytexuat" 0 226 "int8" `969 
-F G "xuat_1byte" 0 227 "void(int8 bytexuat)" `932 
-V L "i" 0 229 "int8" `968 
-C L "xuat_1byte" 0 23 1 "FUNCTION"
-C L "xuat_1byte" 0 23 1 "FUNCTION"
-F G "latch" 0 242 "void()" `956 
-C L "latch" 0 23 1 "FUNCTION"
-C L "latch" 0 23 1 "FUNCTION"
-V L "xuat4byte" 0 248 "int32" `970 
-F G "xuat_4byte_latch" 0 249 "void(int32 xuat4byte)" `934 
-V L "byte3" 0 250 "int8" `969 
-V L "byte2" 0 250 "int8" `970 
-V L "byte1" 0 250 "int8" `971 
-V L "byte0" 0 250 "int8" `972 
-C L "xuat_4byte_latch" 0 23 1 "FUNCTION"
-V L "val" 0 265 "*" `937  "moi lan chay ham mat 8ms"
-F G "HienThiVal" 0 266 "void(* val)" `936 
-V L "value" 0 267 "int32" `973 
-V L "i" 0 268 "int8" `974 
-C L "HienThiVal" 0 23 1 "FUNCTION"
-C L "HienThiVal" 0 23 1 "FUNCTION"
-V L "val" 0 281 "*" `940 
-V L "delay_time" 0 281 "int16" `941  "delay_time so lan chay ham HienThiVal"
-C L "HienThiVal_With_Delay" 0 23 5 "FUNCTION"
-F G "HienThiVal_With_Delay" 0 289 "void(* val,int16 delay_time)" `939 
-V L "delay_time" 0 296 "int16" `944 
-V L "NUMBER" 0 296 "int8" `977 
-F G "HienThiVal_With_Delay_number" 0 297 "void(int16 delay_time,int8 NUMBER)" `943 
-V L "i" 0 300 "int8" `975 
-F G "bao_thoi_gian" 0 312 "void()" `954 
-V L "i" 0 318 "int8" `976 
-V L "i" 0 345 "int8" `977 
-F G "get_data" 0 382 "void()" `946 
-C L "get_data" 0 23 1 "FUNCTION"
-C L "get_data" 0 23 1 "FUNCTION"
-C L "get_data" 0 23 1 "FUNCTION"
-C L "get_data" 0 23 1 "FUNCTION"
-C L "get_data" 0 23 1 "FUNCTION"
-C L "get_data" 0 23 1 "FUNCTION"
-F G "Convert_BCD_to_Decimal" 0 427 "void()" `947 
-F G "Convert_Decimal_to_BCD" 0 437 "void()" `948  "x = (x / 10) << 4 + (x % 10)"
-V L "address" 0 447 "int8" `950 
-V L "data" 0 447 "int8" `983 
-F G "ds1307_write" 0 448 "void(int8 address,int8 data)" `949 
-C L "save_Time_Offset_to_EEPROM" 0 23 4 "FUNCTION"
-F G "save_Time_Offset_to_EEPROM" 0 460 "void()" `961 
-C L "save_Time_Offset_to_EEPROM" 0 23 1 "FUNCTION"
-C L "save_Time_Offset_to_EEPROM" 0 23 1 "FUNCTION"
-C L "save_Time_Offset_to_EEPROM" 0 23 1 "FUNCTION"
-C L "save_Time_Offset_to_EEPROM" 0 23 1 "FUNCTION"
-C L "save_Time_Offset_to_EEPROM" 0 23 1 "FUNCTION"
-C L "save_Time_Offset_to_EEPROM" 0 23 1 "FUNCTION"
-C L "save_Time_Offset_to_EEPROM" 0 23 1 "FUNCTION"
-F G "Adjust_Time_Calendar" 0 503 "void()" `952 
-C L "Adjust_Time_Calendar" 0 23 1 "FUNCTION"
-C L "Adjust_Time_Calendar" 0 23 1 "FUNCTION"
-C L "Adjust_Time_Calendar" 0 23 1 "FUNCTION"
-C L "Adjust_Time_Calendar" 0 23 1 "FUNCTION"
-C L "Adjust_Time_Calendar" 0 23 1 "FUNCTION"
-C L "Adjust_Time_Calendar" 0 23 1 "FUNCTION"
-C L "Adjust_Time_Calendar" 0 23 1 "FUNCTION"
-C L "Adjust_Time_Calendar" 0 23 1 "FUNCTION"
-C L "Adjust_Time_Calendar" 0 23 1 "FUNCTION"
-C L "Adjust_Time_Calendar" 0 23 1 "FUNCTION"
-C L "Adjust_Time_Calendar" 0 23 1 "FUNCTION"
-C L "Adjust_Time_Calendar" 0 23 1 "FUNCTION"
-C L "Adjust_Time_Calendar" 0 23 1 "FUNCTION"
-C L "Adjust_Time_Calendar" 0 23 1 "FUNCTION"
-C L "setup_Time_Calendar" 0 23 1 "FUNCTION"
-F G "setup_Time_Calendar" 0 685 "void()" `955 
-C L "timer0_isr" 0 23 1 "FUNCTION"
-F G "timer0_isr" 0 706 "void()" `960  "reload timer để có khoảng 1 ms tiếp theo"
-C L "timer0_isr" 0 23 1 "FUNCTION"
-C L "timer0_isr" 0 23 2 "FUNCTION"
-F G "timer1_isr" 0 720 "void()" `966  "reload timer để có ~1 ms tick *"
-C L "timer1_isr" 0 23 1 "FUNCTION"
-C L "timer1_isr" 0 23 1 "FUNCTION"
-C L "timer1_isr" 0 23 1 "FUNCTION"
-C L "timer1_isr" 0 23 1 "FUNCTION"
-C L "timer1_isr" 0 23 1 "FUNCTION"
-C L "timer1_isr" 0 23 1 "FUNCTION"
-C L "timer1_isr" 0 23 1 "FUNCTION"
-C L "timer1_isr" 0 23 1 "FUNCTION"
-C L "timer1_isr" 0 23 1 "FUNCTION"
-C L "timer1_isr" 0 23 1 "FUNCTION"
-C L "timer1_isr" 0 23 1 "FUNCTION"
-F G "MAIN" 0 796 "void(int8 address,int8 data)" `981 
-C L "MAIN" 0 23 1 "FUNCTION"
-C L "MAIN" 0 23 1 "FUNCTION"
-C L "MAIN" 0 23 1 "FUNCTION"
-V L "offset_sign" 0 824 "int8" `984 
-C L "MAIN" 0 23 1 "FUNCTION"
-V L "offset_value" 0 825 "int8" `985 
-C L "MAIN" 0 23 1 "FUNCTION"
-C L "MAIN" 0 23 1 "FUNCTION"
-C L "MAIN" 0 23 1 "FUNCTION"
+V G "ConstValHienThi" 0 52 "[16]" `926 
+V G "vmsg_pattern" 0 53 "int8[1]" `929 
+V G "pos" 0 61 "int8" `930 
+V G "flag_coi" 0 62 "int1" `931 
+V G "flag_led" 0 63 "int1" `932 
+V G "flag_save" 0 64 "int1" `933 
+V G "offset_sign" 0 65 "int8" `934 
+V G "offset_value" 0 66 "int8" `935 
+V L "bytexuat" 0 67 "int8" `937 
+f G "xuat_1byte" 0 67 "void(int8 bytexuat)" `936 
+V L "xuat4byte" 0 68 "int32" `939 
+f G "xuat_4byte_latch" 0 68 "void(int32 xuat4byte)" `938 
+V L "val" 0 69 "*" `941 
+f G "HienThiVal" 0 69 "void(* val)" `940 
+V L "val" 0 70 "*" `944 
+V L "delay_time" 0 70 "int16" `945 
+f G "HienThiVal_With_Delay" 0 70 "void(* val,int16 delay_time)" `943 
+V L "delay_time" 0 71 "int16" `948 
+V L "NUMBER" 0 71 "int8" `949 
+f G "HienThiVal_With_Delay_number" 0 71 "void(int16 delay_time,int8 NUMBER)" `947 
+f G "get_data" 0 72 "void()" `950 
+f G "Convert_BCD_to_Decimal" 0 73 "void()" `951 
+f G "Convert_Decimal_to_BCD" 0 74 "void()" `952 
+V L "address" 0 75 "int8" `954 
+V L "data" 0 75 "int8" `955 
+f G "ds1307_write" 0 75 "void(int8 address,int8 data)" `953 
+f G "Adjust_Time_Calendar" 0 76 "void()" `956 
+f G "Adjust_Time_Calendar_Auto" 0 77 "void()" `957 
+f G "bao_thoi_gian" 0 78 "void()" `958 
+f G "setup_Time_Calendar" 0 79 "void()" `959 
+f G "latch" 0 80 "void()" `960 
+f G "timer0_init" 0 81 "void()" `961 
+f G "timer0_start" 0 82 "void()" `962 
+f G "timer0_stop" 0 83 "int16()" `963 
+f G "timer0_isr" 0 84 "void()" `964 
+f G "save_Time_Offset_to_EEPROM" 0 85 "void()" `965 
+f G "mod_selection" 0 86 "void()" `966 
+f G "timer1_init" 0 87 "void()" `967 
+V L "_pattern" 0 88 "int8" `969 
+f G "output8led" 0 88 "void(int8 _pattern)" `968 
+f G "timer1_isr" 0 89 "void()" `970 
+f G "XoaHienThi" 0 90 "void()" `971 
+F G "XoaHienThi" 0 92 "void()" `971 
+V L "i" 0 93 "int8" `972 
+C L "output8led" 0 6 2 "FUNCTION"
+V L "_pattern" 0 100 "int8" `974 
+F G "output8led" 0 101 "void(int8 _pattern)" `968 
+F G "timer0_init" 0 112 "void()" `961  "Disable interrupts toàn cục tạm khi cấu hình"
+C L "timer0_init" 0 6 2 "FUNCTION"
+C L "timer0_init" 0 6 1 "FUNCTION"
+C L "timer0_init" 0 6 1 "FUNCTION"
+C L "timer0_init" 0 6 3 "FUNCTION"
+F G "timer1_init" 0 131 "void()" `967  "Disable interrupts toàn cục tạm khi cấu hình"
+C L "timer1_init" 0 6 2 "FUNCTION"
+C L "timer1_init" 0 6 1 "FUNCTION"
+C L "timer1_init" 0 6 1 "FUNCTION"
+C L "timer1_init" 0 6 3 "FUNCTION"
+C L "timer0_start" 0 6 1 "FUNCTION"
+F G "timer0_start" 0 152 "void()" `962 
+C L "timer0_start" 0 6 1 "FUNCTION"
+F G "timer0_stop" 0 164 "int16()" `963 
+F G "mod_selection" 0 171 "void()" `966 
+C L "mod_selection" 0 6 1 "FUNCTION"
+V L "elapsed_time" 0 177 "int16" `973 
+C L "mod_selection" 0 6 1 "FUNCTION"
+C L "mod_selection" 0 6 1 "FUNCTION"
+C L "mod_selection" 0 6 1 "FUNCTION"
+C L "mod_selection" 0 6 1 "FUNCTION"
+C L "Adjust_Time_Calendar_Auto" 0 6 4 "FUNCTION"
+F G "Adjust_Time_Calendar_Auto" 0 215 "void()" `957 
+C L "Adjust_Time_Calendar_Auto" 0 6 1 "FUNCTION"
+C L "Adjust_Time_Calendar_Auto" 0 6 1 "FUNCTION"
+C L "Adjust_Time_Calendar_Auto" 0 6 1 "FUNCTION"
+C L "Adjust_Time_Calendar_Auto" 0 6 1 "FUNCTION"
+V L "bytexuat" 0 236 "int8" `975 
+F G "xuat_1byte" 0 237 "void(int8 bytexuat)" `936 
+V L "i" 0 239 "int8" `974 
+C L "xuat_1byte" 0 6 1 "FUNCTION"
+C L "xuat_1byte" 0 6 1 "FUNCTION"
+F G "latch" 0 252 "void()" `960 
+C L "latch" 0 6 1 "FUNCTION"
+C L "latch" 0 6 1 "FUNCTION"
+V L "xuat4byte" 0 258 "int32" `976 
+F G "xuat_4byte_latch" 0 259 "void(int32 xuat4byte)" `938 
+V L "byte3" 0 260 "int8" `975 
+V L "byte2" 0 260 "int8" `976 
+V L "byte1" 0 260 "int8" `977 
+V L "byte0" 0 260 "int8" `978 
+C L "xuat_4byte_latch" 0 6 1 "FUNCTION"
+V L "val" 0 275 "*" `941  "moi lan chay ham mat 8ms"
+F G "HienThiVal" 0 276 "void(* val)" `940 
+V L "value" 0 277 "int32" `979 
+V L "i" 0 278 "int8" `980 
+C L "HienThiVal" 0 6 1 "FUNCTION"
+C L "HienThiVal" 0 6 1 "FUNCTION"
+V L "val" 0 291 "*" `944 
+V L "delay_time" 0 291 "int16" `945  "delay_time so lan chay ham HienThiVal"
+C L "HienThiVal_With_Delay" 0 6 5 "FUNCTION"
+F G "HienThiVal_With_Delay" 0 299 "void(* val,int16 delay_time)" `943 
+V L "delay_time" 0 306 "int16" `948 
+V L "NUMBER" 0 306 "int8" `983 
+F G "HienThiVal_With_Delay_number" 0 307 "void(int16 delay_time,int8 NUMBER)" `947 
+V L "i" 0 310 "int8" `981 
+F G "bao_thoi_gian" 0 322 "void()" `958 
+V L "i" 0 328 "int8" `982 
+V L "i" 0 355 "int8" `983 
+F G "get_data" 0 392 "void()" `950 
+C L "get_data" 0 6 1 "FUNCTION"
+C L "get_data" 0 6 1 "FUNCTION"
+C L "get_data" 0 6 1 "FUNCTION"
+C L "get_data" 0 6 1 "FUNCTION"
+C L "get_data" 0 6 1 "FUNCTION"
+C L "get_data" 0 6 1 "FUNCTION"
+F G "Convert_BCD_to_Decimal" 0 437 "void()" `951 
+F G "Convert_Decimal_to_BCD" 0 447 "void()" `952  "x = (x / 10) << 4 + (x % 10)"
+V L "address" 0 457 "int8" `954 
+V L "data" 0 457 "int8" `989 
+F G "ds1307_write" 0 458 "void(int8 address,int8 data)" `953 
+C L "save_Time_Offset_to_EEPROM" 0 6 4 "FUNCTION"
+F G "save_Time_Offset_to_EEPROM" 0 470 "void()" `965 
+C L "save_Time_Offset_to_EEPROM" 0 6 1 "FUNCTION"
+C L "save_Time_Offset_to_EEPROM" 0 6 1 "FUNCTION"
+C L "save_Time_Offset_to_EEPROM" 0 6 1 "FUNCTION"
+C L "save_Time_Offset_to_EEPROM" 0 6 1 "FUNCTION"
+C L "save_Time_Offset_to_EEPROM" 0 6 1 "FUNCTION"
+C L "save_Time_Offset_to_EEPROM" 0 6 1 "FUNCTION"
+C L "save_Time_Offset_to_EEPROM" 0 6 1 "FUNCTION"
+F G "Adjust_Time_Calendar" 0 513 "void()" `956 
+C L "Adjust_Time_Calendar" 0 6 1 "FUNCTION"
+C L "Adjust_Time_Calendar" 0 6 1 "FUNCTION"
+C L "Adjust_Time_Calendar" 0 6 1 "FUNCTION"
+C L "Adjust_Time_Calendar" 0 6 1 "FUNCTION"
+C L "Adjust_Time_Calendar" 0 6 1 "FUNCTION"
+C L "Adjust_Time_Calendar" 0 6 1 "FUNCTION"
+C L "Adjust_Time_Calendar" 0 6 1 "FUNCTION"
+C L "Adjust_Time_Calendar" 0 6 1 "FUNCTION"
+C L "Adjust_Time_Calendar" 0 6 1 "FUNCTION"
+C L "Adjust_Time_Calendar" 0 6 1 "FUNCTION"
+C L "Adjust_Time_Calendar" 0 6 1 "FUNCTION"
+C L "Adjust_Time_Calendar" 0 6 1 "FUNCTION"
+C L "Adjust_Time_Calendar" 0 6 1 "FUNCTION"
+C L "Adjust_Time_Calendar" 0 6 1 "FUNCTION"
+C L "Adjust_Time_Calendar" 0 6 1 "FUNCTION"
+C L "setup_Time_Calendar" 0 6 1 "FUNCTION"
+F G "setup_Time_Calendar" 0 726 "void()" `959 
+C L "timer0_isr" 0 6 1 "FUNCTION"
+F G "timer0_isr" 0 747 "void()" `964  "reload timer để có khoảng 1 ms tiếp theo"
+C L "timer0_isr" 0 6 1 "FUNCTION"
+C L "timer0_isr" 0 6 2 "FUNCTION"
+F G "timer1_isr" 0 761 "void()" `970  "reload timer để có ~1 ms tick *"
+C L "timer1_isr" 0 6 1 "FUNCTION"
+C L "timer1_isr" 0 6 1 "FUNCTION"
+C L "timer1_isr" 0 6 1 "FUNCTION"
+C L "timer1_isr" 0 6 1 "FUNCTION"
+C L "timer1_isr" 0 6 1 "FUNCTION"
+C L "timer1_isr" 0 6 1 "FUNCTION"
+C L "timer1_isr" 0 6 1 "FUNCTION"
+C L "timer1_isr" 0 6 1 "FUNCTION"
+C L "timer1_isr" 0 6 1 "FUNCTION"
+C L "timer1_isr" 0 6 1 "FUNCTION"
+C L "timer1_isr" 0 6 1 "FUNCTION"
+F G "MAIN" 0 837 "void(int8 address,int8 data)" `987 
+C L "MAIN" 0 6 1 "FUNCTION"
+C L "MAIN" 0 6 1 "FUNCTION"
+C L "MAIN" 0 6 1 "FUNCTION"
+V L "offset_sign" 0 865 "int8" `990 
+C L "MAIN" 0 6 1 "FUNCTION"
+V L "offset_value" 0 866 "int8" `991 
+C L "MAIN" 0 6 1 "FUNCTION"
+C L "MAIN" 0 6 1 "FUNCTION"
+C L "MAIN" 0 6 1 "FUNCTION"
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep_ulpwu" 1 0
