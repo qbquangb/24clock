@@ -472,8 +472,6 @@ void save_Time_Offset_to_EEPROM() {
 
     XoaHienThi();
     TIME_DELAY = 15;
-    offset_sign = (time_offset < 0) ? 0 : 1; // 0: negative, 1: positive
-    offset_value = (unsigned int8)abs(time_offset);
     while (1) {
         if (!input(INC)) time_offset++;
         if (time_offset >= 30) time_offset = -27;

@@ -1,6 +1,6 @@
 
-ROM used:   3625/8192 (44%)
-            3883/8192 (47%) including unused fragments
+ROM used:   3630/8192 (44%)
+            3881/8192 (47%) including unused fragments
 
             1.0 Average locations per line
             3.4 Average locations per statement
@@ -13,14 +13,14 @@ Stack size: 8
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  891   582  55  clock.c
+  896   582  55  clock.c
   768     0   0  C:\Program Files (x86)\PICC\Devices\16f887.h
  1351   359  34  C:\Program Files (x86)\PICC\Drivers\stdlib.h
    32     0   0  C:\Program Files (x86)\PICC\Drivers\stddef.h
   423   125  12  C:\Program Files (x86)\PICC\Drivers\string.h
    28     0   0  C:\Program Files (x86)\PICC\Drivers\ctype.h
 ----- -----
- 3493  1066 Total
+ 3498  1066 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
@@ -38,7 +38,7 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     15   0    0    84  1.7  timer1_init
  Inline         0   115  1.7  timer0_start
  Inline         1   102  2.9  timer0_stop
-1   1205  33    1  1229  6.3  mod_selection
+1   1193  33    1  1229  6.3  mod_selection
 0     85   2    1   535  6.2  Adjust_Time_Calendar_Auto
 0     39   1    2   278  6.0  xuat_1byte
  Inline         0    48  1.1  latch
@@ -52,32 +52,33 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0    151   4    1   508  3.8  Convert_Decimal_to_BCD
 0     23   1    3             @DIV88
 0     61   2    2   113  2.0  ds1307_write
- Inline         1  1238 10.0  save_Time_Offset_to_EEPROM
+ Inline         1  1086  9.7  save_Time_Offset_to_EEPROM
  Inline         1  7642 10.9  Adjust_Time_Calendar
 0     72   2    0   388  2.4  setup_Time_Calendar
 0     10   0    0    50  1.5  timer0_isr
 0    142   4    1  1566  9.2  timer1_isr
-1    288   8    1   998  6.5  MAIN
+0      7   0    2    63  3.1  ConvertUnsignedToSigned
+1    298   8    1  1070  6.5  MAIN
  Inline         0             @cinit1
 
 Program metrics:
-    Functions               25
+    Functions               26
     Statements              1066
-    Comments                1034
-    Volume (V)              34036
-    Difficulty (D)          120.3
-    Effort to implement (E) 4094825
-    Time to implement (T)   63 hours, 12 minutes
+    Comments                1033
+    Volume (V)              34128
+    Difficulty (D)          122.8
+    Effort to implement (E) 4190479
+    Time to implement (T)   64 hours, 40 minutes
     Est Delivered Bugs (B)  9
     Cyclomatic Complexity   68
-    Maintainability (MI)    46
+    Maintainability (MI)    56
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00003     4  0  
 00004-00037    52  0  
-00038-007FF  1734  258  
-00800-00FFF  1835  213  
+00038-007FF  1741  251  
+00800-00FFF  1833  215  
 01000-017FF     0  2048  
 01800-01FFF     0  2048  
 
